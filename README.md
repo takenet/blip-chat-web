@@ -7,8 +7,43 @@ SDK to easily add BLiP conversations in your Web page. For more information see 
 Installation
 --------
 
+Add the script element on your web page. Put your apikey as asked. *To get your apikey please enter in contact with BLiP team*
+That's all :)
 
+```html
+<script>
+    (function () {
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.src = 'https://cdn.rawgit.com/takenet/blip-sdk-web/adae1366/Releases/0.0.1/sdk.js';
+      s.async = 1;
+      var x = document.getElementsByTagName('script')[0];
+      x.parentNode.insertBefore(s, x);
 
+      //Execute script with custom API KEY
+      window.onload = function() {
+        blipWebSDK = new IncludeSdk('PUT-YOUR-API-KEY-HERE');
+      }
+    })();
+</script>
+```
+
+## Advanced features
+
+### Setting information about your client
+
+Sometimes, is very important that your chatbot knows information about your customers, as name or some external identifier for example.
+To do this use *setUserAccount* method on **blipWebSDK** loaded object. **Important: you only can use this method after all sdk load process**
+
+```javascript
+var options = {
+    userPhoto: 'http://i.imgur.com/8oL7Ol8.png',
+    userName: 'Blip SDK Test User',
+    userExternalId: 'ASDHASJD132131'
+};
+
+blipWebSDK.setUserAccount(options);
+```
 
 License
 -------
