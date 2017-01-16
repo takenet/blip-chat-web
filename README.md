@@ -22,7 +22,7 @@ That's all :)
 
       //Execute script with custom API KEY
       window.onload = function() {
-        blipWebSDK = new IncludeSdk('PUT-YOUR-API-KEY-HERE');
+        window.blipWebSDK = new IncludeSdk('PUT-YOUR-API-KEY-HERE');
       }
     })();
 </script>
@@ -33,7 +33,7 @@ That's all :)
 ### Setting information about your client
 
 Sometimes, is very important that your chatbot knows information about your customers, as name or some external identifier for example.
-To do this use *setUserAccount* method on **blipWebSDK** loaded object. **Important: you only can use this method after all sdk load process**
+To do this use *setUserAccount* method on **blipWebSDK** loaded object. **Important: you only can use this method on 'window.onload' event.**
 
 ```javascript
 var options = {
