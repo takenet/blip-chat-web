@@ -15,7 +15,7 @@ That's all :)
     (function () {
       var s = document.createElement('script');
       s.type = 'text/javascript';
-      s.src = 'https://cdn.rawgit.com/takenet/blip-sdk-web/adae1366/Releases/0.0.1/sdk.js';
+      s.src = 'https://cdn.rawgit.com/takenet/blip-sdk-web/adae1366/Releases/0.0.2/sdk.js';
       s.async = 1;
       var x = document.getElementsByTagName('script')[0];
       x.parentNode.insertBefore(s, x);
@@ -26,23 +26,6 @@ That's all :)
       }
     })();
 </script>
-```
-
-## Advanced features
-
-### Setting information about your client
-
-Sometimes, is very important that your chatbot knows information about your customers, as name or some external identifier for example.
-To do this use *setUserAccount* method on **blipWebSDK** loaded object. **Important: you only can use this method on 'window.onload' event.**
-
-```javascript
-var options = {
-    userPhoto: 'http://i.imgur.com/8oL7Ol8.png',
-    userName: 'Blip SDK Test User',
-    userExternalId: 'ASDHASJD132131'
-};
-
-blipWebSDK.setUserAccount(options);
 ```
 
 License
