@@ -1,0 +1,23 @@
+{
+  "name": "blip-sdk-web",
+  "description": "Blip SDK for web",
+  "main": "sdk/dist/blipWebSdk.js",
+  "authors": [
+    "Take.net"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "sdk",
+    "web",
+    "chat",
+    "blip"
+  ],
+  "homepage": "https://github.com/takenet/blip-sdk-web",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
