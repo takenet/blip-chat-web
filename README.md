@@ -15,7 +15,7 @@ That's all :)
 <script>
   (function () {
     new BlipWebSDK.ChatBuilder()
-      .withApiKey('A32A04F6-6B10-42D9-B1FB-D2ED9C219DB4')
+      .withApiKey('PUT-YOUR-API-KEY-HERE')
       .build();
   })();
 </script>
