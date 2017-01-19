@@ -1,8 +1,6 @@
 import Style from './style.css';
 import ChatTemplate from './chat.html';
 
-
-//Teste
 export default class Application {
   constructor() {
     this.APIURL = 'https://api.0mn.io/partners';
