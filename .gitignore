@@ -102,10 +102,8 @@ publish/
 packages/
 bower_components/
 node_modules/
-dist/
 */node_modules/*
 */bower_components/*
-*/dist/*
 .tmp/
 */.tmp/*
 

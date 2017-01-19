@@ -1,15 +1,18 @@
 {
-  "name": "test-include-sdk",
-  "version": "1.0.0",
+  "name": "blip-sdk-web",
+  "version": "0.0.1",
   "description": "",
-  "main": "server.js",
+  "main": "sdk/dist/BlipWebSDK.js",
+  "files": [
+    "sdk/dist/BlipWebSDK.js"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cross-env NODE_ENV=homolog ./node_modules/.bin/webpack-dev-server --config webpack.dev.js --port 3002",
     "build": "cross-env NODE_ENV=production ./node_modules/.bin/webpack --display-modules --display-chunks --config webpack.build.js --bail",
     "build:hmg": "cross-env NODE_ENV=homolog ./node_modules/.bin/webpack --display-modules --display-chunks --config webpack.build.js --bail"
   },
-  "author": "Samuel Martins",
+  "author": "Take.net",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.18.0",
