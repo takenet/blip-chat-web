@@ -1,7 +1,7 @@
 {
   "name": "blip-sdk-web",
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.0.3",
+  "description": "Blip SDK for web",
   "main": "sdk/dist/blipWebSdk.js",
   "files": [
     "sdk/dist/blipWebSdk.js"
@@ -11,6 +11,10 @@
     "start": "cross-env NODE_ENV=homolog ./node_modules/.bin/webpack-dev-server --config webpack.dev.js --port 3002",
     "build": "cross-env NODE_ENV=production ./node_modules/.bin/webpack --display-modules --display-chunks --config webpack.build.js --bail",
     "build:hmg": "cross-env NODE_ENV=homolog ./node_modules/.bin/webpack --display-modules --display-chunks --config webpack.build.js --bail"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/takenet/blip-sdk-web.git"
   },
   "author": "Take.net",
   "license": "ISC",

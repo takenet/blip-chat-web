@@ -11,23 +11,31 @@ Add the script element on your web page. Put your apikey as asked. *To get your 
 That's all :)
 
 ```html
+<script src="https://unpkg.com/blip-sdk-web" type="text/javascript"></script>
 <script>
-    (function () {
-      var s = document.createElement('script');
-      s.type = 'text/javascript';
-      s.src = 'https://cdn.rawgit.com/takenet/blip-sdk-web/3ba6c521/Releases/0.0.3/blip-web-sdk.js';
-      s.async = 1;
-      var x = document.getElementsByTagName('script')[0];
-      x.parentNode.insertBefore(s, x);
-
-      //Execute script with custom API KEY
-      window.onload=function(){
-        (new BlipWebSDK.ChatBuilder)
-            .withApiKey("PUT-YOUR-API-KEY-HERE")
-            .build()
-      }
-    })();
+  (function () {
+    new BlipWebSDK.ChatBuilder()
+      .withApiKey('A32A04F6-6B10-42D9-B1FB-D2ED9C219DB4')
+      .build();
+  })();
 </script>
+```
+
+Via npm
+--------
+
+If you are using ES6, simply install the `blip-sdk-web` package from the npm registry.
+
+  npm install blip-sdk-web
+
+*** Instantiate the BlipSdkWeb class
+
+```javascript
+import * as BlipWebSDK from 'blip-sdk-web';
+
+new BlipWebSDK.ChatBuilder()
+  .withApiKey('PUT-YOUR-API-KEY-HERE')
+  .build();
 ```
 
 License
