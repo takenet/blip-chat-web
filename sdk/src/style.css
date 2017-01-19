@@ -1,0 +1,45 @@
+#take-chat {
+  background: rgb(84,110,122);
+  color: white;
+  position: fixed;
+  bottom: 0;
+  right: 10px;
+  padding: 40px 0px 14px 0px;
+  overflow: hidden;
+  transition: 700ms;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 0 20px 1px rgba(0,0,0,.26);
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  line-height: 1.42857143;
+}
+
+#take-chat iframe { border: 0; }
+
+#blip-close-btn {
+  position: absolute;
+  top: 6px;
+  left: 10px;
+  width: 100%;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#blip-close-btn img {
+  max-width: 25px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.blip-footer {
+  position: absolute;
+  bottom: 1px;
+  right: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+}
+
+.blip-hidden-chat { bottom: -430px !important; }
+.blip-show-chat { bottom: 0; }
