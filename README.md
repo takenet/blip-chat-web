@@ -15,14 +15,16 @@ That's all :)
     (function () {
       var s = document.createElement('script');
       s.type = 'text/javascript';
-      s.src = 'https://cdn.rawgit.com/takenet/blip-sdk-web/adae1366/Releases/0.0.2/sdk.js';
+      s.src = 'https://cdn.rawgit.com/takenet/blip-sdk-web/3ba6c521/Releases/0.0.3/blip-web-sdk.js';
       s.async = 1;
       var x = document.getElementsByTagName('script')[0];
       x.parentNode.insertBefore(s, x);
 
       //Execute script with custom API KEY
-      window.onload = function() {
-        window.blipWebSDK = new IncludeSdk('PUT-YOUR-API-KEY-HERE');
+      window.onload=function(){
+        (new BlipWebSDK.ChatBuilder)
+            .withApiKey("PUT-YOUR-API-KEY-HERE")
+            .build()
       }
     })();
 </script>
