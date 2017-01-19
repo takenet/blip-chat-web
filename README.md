@@ -26,7 +26,7 @@ Via npm
 
 If you are using ES6, simply install the `blip-sdk-web` package from the npm registry.
 
-  npm install blip-sdk-web
+`npm install blip-sdk-web`
 
 ###Instantiate the BlipSdkWeb class
 
