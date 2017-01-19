@@ -2,9 +2,9 @@
   "name": "blip-sdk-web",
   "version": "0.0.1",
   "description": "",
-  "main": "sdk/dist/BlipWebSDK.js",
+  "main": "sdk/dist/blipWebSdk.js",
   "files": [
-    "sdk/dist/BlipWebSDK.js"
+    "sdk/dist/blipWebSdk.js"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
