@@ -1,6 +1,6 @@
 {
   "name": "blip-sdk-web",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Blip SDK for web",
   "main": "sdk/dist/blipWebSdk.js",
   "files": [
