@@ -10,7 +10,7 @@ export default class ChatBuilder {
     return this;
   }
 
-  build() {
-    this._application.openBlipThread();
+  build(opts) {
+    this._application.openBlipThread(opts);
   }
 }
