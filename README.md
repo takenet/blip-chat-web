@@ -38,6 +38,51 @@ new BlipWebSDK.ChatBuilder()
   .build();
 ```
 
+Via bower
+--------
+
+`bower install blip-sdk-web`
+
+```html
+<script src="your-project/bower_components/blip-sdk-web/dist/blipWebSdk.js" type="text/javascript"></script>
+<script>
+  (function () {
+    new BlipWebSDK.ChatBuilder()
+      .withApiKey('PUT-YOUR-API-KEY-HERE')
+      .build();
+  })();
+</script>
+```
+
+Optional parameters
+-------
+
+You can also define an optional parameters passing an object inside *build()* method, as you can see below:
+
+| Option | Description |
+| --- | --- |
+| `title` | Title of chat window |
+| `onEnter` | Callback action on enter chat |
+| `onLeave` | Callback action on leave chat |
+
+###Example
+
+```javascript
+var options = {
+    title: 'Send a message',
+    onEnter: function() {
+        console.log("I'm in the chat!");
+    },
+    onLeave: function() {
+        console.log("I'm out the chat!");
+    }
+};
+
+new BlipWebSDK.ChatBuilder()
+  .withApiKey('PUT-YOUR-API-KEY-HERE')
+  .build(options);
+```
+
 License
 -------
 
