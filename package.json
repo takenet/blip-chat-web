@@ -19,7 +19,7 @@
   "author": "Take.net",
   "license": "ISC",
   "devDependencies": {
-    "babel-cli": "^6.18.0",
+    "babel-cli": "^6.22.2",
     "babel-loader": "^6.2.10",
     "babel-plugin-syntax-async-functions": "^6.13.0",
     "babel-plugin-transform-exponentiation-operator": "^6.8.0",
@@ -36,5 +36,8 @@
     "style-loader": "^0.13.1",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2"
+  },
+  "dependencies": {
+    "babel-cli": "^6.22.2"
   }
 }

@@ -12,18 +12,39 @@
       <div class="col-xs-12">
         <div class="jumbotron">
           <h1>BlipWebSDK Sandbox</h1>
+          <button onclick="sendMessage()">Send test message</button>
+          <button onclick="destroySDK()">Destroy SDK</button>
+          <button onclick="buildSDK()">Build SDK</button>
         </div>
       </div>
     </div>
   </div>
-
+  
   <script>
+    var sendMessage;
+    var destroySDK;
+    var buildSDK;    
     (function () {
       window.onload = function() {
-        new BlipWebSDK.ChatBuilder()
-          .withApiKey('A32A04F6-6B10-42D9-B1FB-D2ED9C219DB4')
-          .build();
-      }
+        var blipsdk = new BlipWebSDK.ChatBuilder()
+          .withApiKey('A32A04F6-6B10-42D9-B1FB-D2ED9C219DB4');
+        blipsdk.build();
+
+        sendMessage = function() {
+          blipsdk.sendMessage('teste');
+        }
+
+        destroySDK = function() {
+          blipsdk.destroy();
+        }
+
+        buildSDK = function() {
+          blipsdk.destroy();
+          blipsdk = new BlipWebSDK.ChatBuilder()
+          .withApiKey('A32A04F6-6B10-42D9-B1FB-D2ED9C219DB4');
+          blipsdk.build();
+        }
+      }      
     })();
   </script>
 </body>

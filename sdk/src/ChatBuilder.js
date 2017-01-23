@@ -10,8 +10,18 @@ export default class ChatBuilder {
     return this;
   }
 
-  build(opts) {
-    console.log(opts);
+  build(opts) {    
     this._application.openBlipThread(opts);
+  }
+
+  destroy(){
+    if (this._application) {
+      this._application.destroy();
+      this._application = null;
+    }
+  }
+
+  sendMessage(message) {
+    this._application._sendMessage(message);    
   }
 }

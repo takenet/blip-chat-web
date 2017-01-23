@@ -80,8 +80,17 @@ export default class Application {
     });
   }
 
+  destroy() {
+    let body = document.getElementsByTagName('body')[0];
+    body.removeChild(this.chatEl);
+  }
+
   _setChatTitle(title) {
     let chatTitle = title ? title : 'Estamos online';
     this.chatEl.querySelector('#chat-header-text').innerHTML = chatTitle;
+  }
+
+  _sendMessage(message) {
+    this.chatEl.querySelector('iframe').contentWindow.postMessage(message, '*');
   }
 }
