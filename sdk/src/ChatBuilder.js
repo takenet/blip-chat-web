@@ -11,6 +11,7 @@ export default class ChatBuilder {
   }
 
   build(opts) {
+    console.log(opts);
     this._application.openBlipThread(opts);
   }
 }

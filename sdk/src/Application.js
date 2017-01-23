@@ -3,6 +3,13 @@ import ChatTemplate from './chat.html';
 
 export default class Application {
   constructor() {
+    //Default options
+    this.options = {
+      title: 'Estamos online',
+      onEnter: () => {},
+      onLeave: () => {}
+    }
+
     this.APIURL = 'https://api.0mn.io/partners';
 
     this.IFRAMEURL_HMG = 'https://hmg-blip-sdk.azurewebsites.net/chat';
@@ -19,11 +26,12 @@ export default class Application {
   }
 
   /* Init chat and set values, style and cookies */
-  openBlipThread(opts) {
+  openBlipThread(options) {
     let params = 'apikey=' + this._apiKey;
+    let chatOpts = options || this.options;
 
     //Chat HTML element
-    this.buildChat(params, opts);
+    this.buildChat(params, chatOpts);
   }
 
   /* Build chat HTML element */
