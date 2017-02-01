@@ -28,7 +28,7 @@ export default class Application {
   /* Init chat and set values, style and cookies */
   openBlipThread(options) {
     let params = 'apikey=' + this._apiKey;
-    let chatOpts = options || this.options;
+    let chatOpts = { ...this.options, ...options };
 
     //Chat HTML element
     this.buildChat(params, chatOpts);
