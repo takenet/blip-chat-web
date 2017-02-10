@@ -11,8 +11,7 @@
     "start": "cross-env NODE_ENV=homolog ./node_modules/.bin/webpack-dev-server --config webpack.dev.js --port 3002",
     "start:local": "cross-env NODE_ENV=local ./node_modules/.bin/webpack-dev-server --config webpack.dev.js --port 3002",
     "build": "cross-env NODE_ENV=production ./node_modules/.bin/webpack --display-modules --display-chunks --config webpack.build.js --bail",
-    "build:hmg": "cross-env NODE_ENV=homolog ./node_modules/.bin/webpack --display-modules --display-chunks --config webpack.build.js --bail",
-    "npm-login": "./node_modules/.bin/npm-cli-login -u %secure:teamcity.password.NpmUser% -p password -e email --config-path ''"
+    "build:hmg": "cross-env NODE_ENV=homolog ./node_modules/.bin/webpack --display-modules --display-chunks --config webpack.build.js --bail"
   },
   "repository": {
     "type": "git",
