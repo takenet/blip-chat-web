@@ -10,18 +10,22 @@ export default class Application {
       onLeave: () => {}
     }
 
-    this.APIURL = 'https://api.0mn.io/partners';
+    this.APIURL_PRD = 'https://api.0mn.io/partners';
+    this.APIURL_HMG = 'https://takenet-hmg-omni-api.azurewebsites.net/partners'
 
-    this.IFRAMEURL_HMG = 'https://hmg-blip-sdk.azurewebsites.net/chat';
+    this.IFRAMEURL_HMG = 'http://hmg.sdkcommon.blip.ai/';
     this.IFRAMEURL_LOCAL = 'http://localhost:3000/chat';
-    this.IFRAMEURL_PRD = 'https://blip-sdk.azurewebsites.net/chat'
+    this.IFRAMEURL_PRD = 'https://sdkcommon.blip.ai/'
     this.IFRAMEURL = this.IFRAMEURL_LOCAL;
+    this.APIURL = this.APIURL_PRD;
 
     if (process.env.NODE_ENV === 'homolog') {
       this.IFRAMEURL = this.IFRAMEURL_HMG;
+      this.APIURL = this.APIURL_HMG;
     }
     else if (process.env.NODE_ENV === 'production') {
       this.IFRAMEURL = this.IFRAMEURL_PRD;
+      this.APIURL = this.APIURL_PRD;
     }
   }
 
