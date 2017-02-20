@@ -11,7 +11,7 @@ Add the script element on your web page. Put your apikey as asked. *To get your 
 That's all :)
 
 ```html
-<script src="https://unpkg.com/blip-sdk-web@0.1.1" type="text/javascript"></script>
+<script src="https://unpkg.com/blip-sdk-web@0.1.2" type="text/javascript"></script>
 <script>
   (function () {
     new BlipWebSDK.ChatBuilder()
