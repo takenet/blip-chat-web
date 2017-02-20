@@ -51,8 +51,8 @@ export default class Application {
 
     //Chat iframe
     let chatIframe = document.createElement('iframe');
-    chatIframe.width = 290;
-    chatIframe.height = 400;
+    chatIframe.width = 300;
+    chatIframe.height = 460;
     chatIframe.src = this.IFRAMEURL + '?' + params;
 
     chatEl.appendChild(chatIframe);
