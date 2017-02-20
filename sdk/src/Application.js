@@ -10,7 +10,7 @@ export default class Application {
       onLeave: () => {}
     }
 
-    this.IFRAMEURL_HMG = 'https://hmg.sdkcommon.blip.ai/';
+    this.IFRAMEURL_HMG = 'http://hmg.sdkcommon.blip.ai/';
     this.IFRAMEURL_LOCAL = 'http://localhost:3000/';
     this.IFRAMEURL_PRD = 'https://sdkcommon.blip.ai/'
     this.IFRAMEURL = this.IFRAMEURL_LOCAL;
