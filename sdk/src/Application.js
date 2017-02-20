@@ -14,8 +14,8 @@ export default class Application {
     this.APIURL_HMG = 'https://takenet-hmg-omni-api.azurewebsites.net/partners'
 
     this.IFRAMEURL_HMG = 'http://hmg.sdkcommon.blip.ai/';
-    this.IFRAMEURL_LOCAL = 'http://localhost:3000/chat';
-    this.IFRAMEURL_PRD = 'https://blip-sdk.azurewebsites.net/'
+    this.IFRAMEURL_LOCAL = 'http://localhost:3000/';
+    this.IFRAMEURL_PRD = 'http://sdkcommon.blip.ai/'
     this.IFRAMEURL = this.IFRAMEURL_LOCAL;
     this.APIURL = this.APIURL_PRD;
 
