@@ -1,12 +1,9 @@
-
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var cssPlugin = new ExtractTextPlugin('[name].css');
-
 module.exports = function makeWebpackConfig(opt) {
-
+    var cssPlugin = new ExtractTextPlugin('[name].css');
     var BUILD = !!opt.BUILD;
 
     var commonPlugins = [
@@ -14,6 +11,13 @@ module.exports = function makeWebpackConfig(opt) {
         new webpack.DefinePlugin({
             'process.env': {
                 'NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
+            }
+        }),
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                output: {
+                    path: __dirname + '/sdk/dist',
+                }
             }
         }),
         new HtmlWebpackPlugin({
@@ -36,19 +40,38 @@ module.exports = function makeWebpackConfig(opt) {
             libraryTarget: 'umd'
         },
         module: {
-            loaders: [
-                { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
-                { test: /\.css$/, loader: 'style-loader!css-loader', exclude: /node_modules/ },
-                { test: /\.html$/, loader: 'html', query: { minimize: true } }
+            rules: [
+                {
+                    test: /\.js$/,
+                    loader: 'babel-loader',
+                    exclude: /node_modules/
+                },
+                {
+                    test: /\.css$/,
+                    use: [
+                        { loader: 'style-loader' },
+                        { loader: 'css-loader' }
+                    ],
+                    exclude: /node_modules/
+                },
+                {
+                    test: /\.html$/,
+                    use: {
+                        loader: 'html-loader',
+                        query: { minimize: true }
+                    }
+                }
             ]
         },
-        devServer: {
-            debug: true,
-            watch: true,
+        node: {
             inline: true,
             progress: true,
             colors: true,
             hot: true
+        },
+        devServer: {
+            debug: true,
+            watch: true,
         },
         // PRODUCTION ==> common + production plugins
         plugins: BUILD ? commonPlugins.concat([
@@ -59,8 +82,7 @@ module.exports = function makeWebpackConfig(opt) {
                 compress: {
                     warnings: false
                 }
-            }),
-            cssPlugin
+            })
         ])
             // DEVELOPMENT ==> common + development plugins
             : commonPlugins.concat([
