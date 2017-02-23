@@ -7,7 +7,7 @@ SDK to easily add BLiP conversations in your Web page. For more information see 
 Installation
 --------
 
-Add the script element on your web page. Put your apikey as asked. *To get your apikey please enter in contact with BLiP team*
+Add the script element inside the **body** of your web page. Put your apikey as asked. *To get your apikey please enter in contact with BLiP team*
 That's all :)
 
 ```html
