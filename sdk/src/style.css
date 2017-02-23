@@ -16,6 +16,7 @@
 #take-chat iframe { border: 0; }
 
 #blip-close-btn {
+  padding-top: 5px;
   position: absolute;
   top: 6px;
   left: 10px;
@@ -26,7 +27,8 @@
 }
 
 #blip-close-btn img {
-  max-width: 25px;
+  max-width: 18px;
+  width: 18px;
   margin-right: 5px;
   vertical-align: middle;
 }
