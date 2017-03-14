@@ -65,7 +65,7 @@ You can also define an optional parameters passing an object inside *build()* me
 | `onEnter` | Callback action on enter chat |
 | `onLeave` | Callback action on leave chat |
 
-###Example
+### Example
 
 ```javascript
 var options = {
@@ -89,7 +89,7 @@ new BlipWebSDK.ChatBuilder()
 
 To destroy BLiP widget you must use a **destroy** method on chat builder variable.
 
-###Example
+### Example
 
 ```javascript
 var options = {
