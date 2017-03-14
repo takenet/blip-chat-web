@@ -83,6 +83,39 @@ new BlipWebSDK.ChatBuilder()
   .build(options);
 ```
 
+## Advanced features
+
+### Destroy chat widget
+
+To destroy BLiP widget you must use a **destroy** method on chat builder variable.
+
+###Example
+
+```javascript
+var options = {
+    title: 'Send a message',
+    onEnter: function() {
+        console.log("I'm in the chat!");
+    },
+    onLeave: function() {
+        console.log("I'm out the chat!");
+    }
+};
+
+var chatBuilder = new BlipWebSDK.ChatBuilder()
+  .withApiKey('PUT-YOUR-API-KEY-HERE')
+  .build(options);
+  
+//To destroy widget use:
+chatBuilder.destroy();
+
+//To recreate widget use:
+chatBuilder = new BlipWebSDK.ChatBuilder()
+  .withApiKey('PUT-YOUR-API-KEY-HERE')
+  .build(options);
+```
+
+
 License
 -------
 
