@@ -34,6 +34,7 @@ export default class Application {
   /* Init chat and set values and styles*/
   openBlipThread(options) {
 
+    this.options = options;
     let chatOpts = { ...this.options, ...options };
 
     //Chat HTML element
@@ -44,7 +45,7 @@ export default class Application {
   buildChat(opts) {
 
     let params = 'apikey=' + this._apiKey;
-    
+
     //Chat iframe
     this.chatIframe = document.createElement('iframe');
     this.chatIframe.src = this.IFRAMEURL + '?' + params;
@@ -92,7 +93,7 @@ export default class Application {
 
       this.chatEl.className = 'target-window';
       this.chatEl.appendChild(this.chatIframe);
-      
+
       this.chatIframe.className += ' target-window';
       let chatTarget = document.getElementById(opts.target);
 
@@ -102,8 +103,13 @@ export default class Application {
   }
 
   destroy() {
-    let body = document.getElementsByTagName('body')[0];
-    body.removeChild(this.chatEl);
+    if (this.options.target !== undefined) {
+      let element = document.getElementById(this.options.target);
+      element.removeChild(this.chatEl);
+    } else {
+      let body = document.getElementsByTagName('body')[0];
+      body.removeChild(this.chatEl);
+    }
   }
 
   _setChatTitle(title) {
