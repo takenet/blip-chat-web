@@ -1,5 +1,6 @@
 import Style from './style.css';
-import ChatTemplate from './chat.html';
+import ChatHeaderTemplate from './chat-header.html';
+import ChatFooterTemplate from './chat-footer.html';
 
 export default class Application {
   constructor() {
@@ -22,27 +23,18 @@ export default class Application {
       this.IFRAMEURL = this.IFRAMEURL_PRD;
     }
 
-
-    //Div element
+    //Div container for SDK
     let chatEl = document.createElement('div');
-    //Div ID and Class
+    //Div ID 
     chatEl.id = 'take-chat';
-    chatEl.innerHTML = ChatTemplate;
     this.chatEl = chatEl;
-
-    //Chat iframe
-    this.chatIframe = document.createElement('iframe');
-
-    this.chatEl.appendChild(this.chatIframe);
 
   }
 
-  /* Init chat and set values, style and cookies */
+  /* Init chat and set values and styles*/
   openBlipThread(options) {
-    let params = 'apikey=' + this._apiKey;
-    let chatOpts = { ...this.options, ...options };
 
-    this.chatIframe.src = this.IFRAMEURL + '?' + params;
+    let chatOpts = { ...this.options, ...options };
 
     //Chat HTML element
     this.buildChat(chatOpts);
@@ -51,18 +43,30 @@ export default class Application {
   /* Build chat HTML element */
   buildChat(opts) {
 
-    //Set chat title
-    this._setChatTitle(opts.title);
+    let params = 'apikey=' + this._apiKey;
+    
+    //Chat iframe
+    this.chatIframe = document.createElement('iframe');
+    this.chatIframe.src = this.IFRAMEURL + '?' + params;
 
     if (opts.target === undefined) {
-      let body = document.getElementsByTagName('body')[0];
-      body.appendChild(this.chatEl);
+
+      this.chatEl.innerHTML = ChatHeaderTemplate;
+      this.chatEl.innerHTML += ChatFooterTemplate;
+      this.chatEl.appendChild(this.chatIframe);
 
       this.chatEl.className = 'blip-hidden-chat';
       this.chatEl.className += ' fixed-window';
 
       this.chatIframe.width = 300;
       this.chatIframe.height = 460;
+
+
+      //Set chat title
+      this._setChatTitle(opts.title);
+
+      let body = document.getElementsByTagName('body')[0];
+      body.appendChild(this.chatEl);
 
       let closeBtn = document.getElementById('blip-close-btn');
       closeBtn.addEventListener('click', () => {
@@ -86,7 +90,9 @@ export default class Application {
 
     } else {
 
-      this.chatEl.className += ' target-window';
+      this.chatEl.className = 'target-window';
+      this.chatEl.appendChild(this.chatIframe);
+      
       this.chatIframe.className += ' target-window';
       let chatTarget = document.getElementById(opts.target);
 

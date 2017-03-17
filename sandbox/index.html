@@ -10,16 +10,16 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <!--<div class="jumbotron">
+        <div class="jumbotron">
           <h1>BlipWebSDK Sandbox</h1>
           <button onclick="sendMessage()">Send test message</button>
           <button onclick="destroySDK()">Destroy SDK</button>
           <button onclick="buildSDK()">Build SDK</button>
-        </div>-->
-        <div id="sdk-target" style="height: 500px; width: 100%;"> </div>
+        </div>
       </div>
     </div>
   </div>
+  <div id="sdk-target" style="height:550px; width: 50%"> </div>
 
   <script>
     var sendMessage;
@@ -31,7 +31,7 @@
           .withApiKey('0070F943-4024-4FED-A3BA-BDD50D324F6E');
         blipsdk.build({
           title: 'Fale conosco',
-          target: 'sdk-target'
+          // target: 'sdk-target'
         });
 
         sendMessage = function() {
