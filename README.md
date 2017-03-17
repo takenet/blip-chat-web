@@ -62,14 +62,36 @@ You can also define an optional parameters passing an object inside *build()* me
 | Option | Description |
 | --- | --- |
 | `title` | Title of chat window |
+| `target` | Target element id for embedding sdk |
 | `onEnter` | Callback action on enter chat |
 | `onLeave` | Callback action on leave chat |
 
 ### Example
 
+## SDK as widget 
+
 ```javascript
 var options = {
     title: 'Send a message',
+    onEnter: function() {
+        console.log("I'm in the chat!");
+    },
+    onLeave: function() {
+        console.log("I'm out the chat!");
+    }
+};
+
+new BlipWebSDK.ChatBuilder()
+  .withApiKey('PUT-YOUR-API-KEY-HERE')
+  .build(options);
+```
+
+## SDK as embedded element
+
+```javascript
+var options = {
+    title: 'Send a message',
+    target: 'your-element-id',
     onEnter: function() {
         console.log("I'm in the chat!");
     },
