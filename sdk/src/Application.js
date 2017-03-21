@@ -1,13 +1,14 @@
 import Style from './style.css';
-import ChatTemplate from './chat.html';
+import ChatHeaderTemplate from './chat-header.html';
+import ChatFooterTemplate from './chat-footer.html';
 
 export default class Application {
   constructor() {
     //Default options
     this.options = {
       title: 'Estamos online',
-      onEnter: () => {},
-      onLeave: () => {}
+      onEnter: () => { },
+      onLeave: () => { },
     }
 
     this.IFRAMEURL_HMG = 'https://hmg-sdkcommon.blip.ai/';
@@ -21,66 +22,94 @@ export default class Application {
     else if (process.env.NODE_ENV === 'production') {
       this.IFRAMEURL = this.IFRAMEURL_PRD;
     }
+
+    //Div container for SDK
+    let chatEl = document.createElement('div');
+    //Div ID 
+    chatEl.id = 'take-chat';
+    this.chatEl = chatEl;
+
   }
 
-  /* Init chat and set values, style and cookies */
+  /* Init chat and set values and styles*/
   openBlipThread(options) {
-    let params = 'apikey=' + this._apiKey;
+
+    this.options = options;
     let chatOpts = { ...this.options, ...options };
 
     //Chat HTML element
-    this.buildChat(params, chatOpts);
+    this.buildChat(chatOpts);
   }
 
   /* Build chat HTML element */
-  buildChat(params, opts) {
-    let body = document.getElementsByTagName('body')[0];
-    //Div element
-    let chatEl = document.createElement('div');
+  buildChat(opts) {
 
-    //Div ID and Class
-    chatEl.id = 'take-chat';
-    chatEl.className = 'blip-hidden-chat';
-    chatEl.innerHTML = ChatTemplate;
-
-    this.chatEl = chatEl;
-    body.appendChild(this.chatEl);
-
-    //Set chat title
-    this._setChatTitle(opts.title);
+    let params = 'apikey=' + this._apiKey;
 
     //Chat iframe
-    let chatIframe = document.createElement('iframe');
-    chatIframe.width = 300;
-    chatIframe.height = 460;
-    chatIframe.src = this.IFRAMEURL + '?' + params;
+    this.chatIframe = document.createElement('iframe');
+    this.chatIframe.src = this.IFRAMEURL + '?' + params;
 
-    chatEl.appendChild(chatIframe);
+    if (opts.target === undefined) {
 
-    let closeBtn = document.getElementById('blip-close-btn');
-    closeBtn.addEventListener('click', () => {
-      if (chatEl.getAttribute('class') == 'blip-hidden-chat') {
-        chatEl.setAttribute('class', 'blip-show-chat');
+      this.chatEl.innerHTML = ChatHeaderTemplate;
+      this.chatEl.innerHTML += ChatFooterTemplate;
+      this.chatEl.appendChild(this.chatIframe);
 
-        //Enter chat callback
-        setTimeout(() => {
-          opts.onEnter();
-        }, 500);
-      }
-      else {
-        chatEl.setAttribute('class', 'blip-hidden-chat');
+      this.chatEl.className = 'blip-hidden-chat';
+      this.chatEl.className += ' fixed-window';
 
-        //Leave chat callback
-        setTimeout(() => {
-          opts.onLeave();
-        }, 500);
-      }
-    });
+      this.chatIframe.width = 300;
+      this.chatIframe.height = 460;
+
+
+      //Set chat title
+      this._setChatTitle(opts.title);
+
+      let body = document.getElementsByTagName('body')[0];
+      body.appendChild(this.chatEl);
+
+      let closeBtn = document.getElementById('blip-close-btn');
+      closeBtn.addEventListener('click', () => {
+        if (this.chatEl.getAttribute('class').indexOf('blip-hidden-chat') == ! -1) {
+          this.chatEl.setAttribute('class', 'blip-show-chat fixed-window');
+
+          //Enter chat callback
+          setTimeout(() => {
+            opts.onEnter();
+          }, 500);
+        }
+        else {
+          this.chatEl.setAttribute('class', 'blip-hidden-chat fixed-window');
+
+          //Leave chat callback
+          setTimeout(() => {
+            opts.onLeave();
+          }, 500);
+        }
+      });
+
+    } else {
+
+      this.chatEl.className = 'target-window';
+      this.chatEl.appendChild(this.chatIframe);
+
+      this.chatIframe.className += ' target-window';
+      let chatTarget = document.getElementById(opts.target);
+
+      chatTarget.appendChild(this.chatEl);
+    }
+
   }
 
   destroy() {
-    let body = document.getElementsByTagName('body')[0];
-    body.removeChild(this.chatEl);
+    if (this.options.target !== undefined) {
+      let element = document.getElementById(this.options.target);
+      element.removeChild(this.chatEl);
+    } else {
+      let body = document.getElementsByTagName('body')[0];
+      body.removeChild(this.chatEl);
+    }
   }
 
   _setChatTitle(title) {

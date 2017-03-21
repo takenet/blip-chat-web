@@ -15,10 +15,12 @@
           <button onclick="sendMessage()">Send test message</button>
           <button onclick="destroySDK()">Destroy SDK</button>
           <button onclick="buildSDK()">Build SDK</button>
+          <button onclick="changeSDK()">Change SDK Template</button>
         </div>
       </div>
     </div>
   </div>
+  <div id="sdk-target" style="height:550px; width: 50%"> </div>
 
   <script>
     var sendMessage;
@@ -26,11 +28,15 @@
     var buildSDK;
     (function () {
       window.onload = function() {
+        
+        var options = {
+          title: 'Fale conosco',
+          target: 'sdk-target'
+        }
+        
         var blipsdk = new BlipWebSDK.ChatBuilder()
           .withApiKey('0070F943-4024-4FED-A3BA-BDD50D324F6E');
-        blipsdk.build({
-          title: 'Fale conosco'
-        });
+        blipsdk.build(options);
 
         sendMessage = function() {
           blipsdk.sendMessage('teste');
@@ -45,6 +51,21 @@
           blipsdk = new BlipWebSDK.ChatBuilder()
           .withApiKey('0070F943-4024-4FED-A3BA-BDD50D324F6E');
           blipsdk.build();
+        }
+
+        changeSDK = function() {
+
+          blipsdk.destroy();
+
+          if(options.target !== undefined){
+            options.target = undefined;
+          } else{  
+            options.target = 'sdk-target';
+          }
+
+          blipsdk = new BlipWebSDK.ChatBuilder()
+          .withApiKey('0070F943-4024-4FED-A3BA-BDD50D324F6E');
+          blipsdk.build(options);
         }
       }
     })();
