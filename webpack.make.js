@@ -33,7 +33,8 @@ module.exports = function makeWebpackConfig(opt) {
             path: __dirname + '/sdk/dist',
             filename: 'blipWebSdk.js',
             library: 'BlipWebSDK',
-            libraryTarget: 'umd'
+            libraryTarget: 'umd',
+            umdNamedDefine: true
         },
         module: {
             loaders: [
