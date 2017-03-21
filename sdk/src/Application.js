@@ -33,9 +33,9 @@ export default class Application {
 
   /* Init chat and set values and styles*/
   openBlipThread(options) {
-
-    this.options = options;
+    
     let chatOpts = { ...this.options, ...options };
+    this.options = chatOpts;
 
     //Chat HTML element
     this.buildChat(chatOpts);
