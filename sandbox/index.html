@@ -35,7 +35,7 @@
         }
         
         var blipsdk = new BlipWebSDK.ChatBuilder()
-          .withApiKey('0070F943-4024-4FED-A3BA-BDD50D324F6E');
+          .withApiKey('072B7F42-D153-4C90-9C39-592F29CC8CCA');
         blipsdk.build(options);
 
         sendMessage = function() {
@@ -49,7 +49,7 @@
         buildSDK = function() {
           blipsdk.destroy();
           blipsdk = new BlipWebSDK.ChatBuilder()
-          .withApiKey('0070F943-4024-4FED-A3BA-BDD50D324F6E');
+          .withApiKey('072B7F42-D153-4C90-9C39-592F29CC8CCA');
           blipsdk.build();
         }
 
@@ -58,13 +58,14 @@
           blipsdk.destroy();
 
           if(options.target !== undefined){
+
             options.target = undefined;
           } else{  
             options.target = 'sdk-target';
           }
 
           blipsdk = new BlipWebSDK.ChatBuilder()
-          .withApiKey('0070F943-4024-4FED-A3BA-BDD50D324F6E');
+          .withApiKey('072B7F42-D153-4C90-9C39-592F29CC8CCA');
           blipsdk.build(options);
         }
       }
