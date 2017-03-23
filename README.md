@@ -56,6 +56,28 @@ Via bower
 </script>
 ```
 
+Via AMD
+--------
+
+This SDK use UMD to module export. If your project use same AMD, please use 'BlipWebSDK' identifier to resolve the library dependency.
+
+### For instance:
+
+A application that use dojo.js as your AMD
+
+```html
+<script src="//ajax.googleapis.com/ajax/libs/dojo/1.12.1/dojo/dojo.js"></script>
+<script type="text/javascript" src="https://unpkg.com/blip-sdk-web@0.1.7"></script>
+
+<script>
+    require(['BlipWebSDK'], function (sdk) {
+        new sdk.ChatBuilder()
+                  .withApiKey('0070F943-4024-4FED-A3BA-BDD50D324F6E')
+                  .build();
+    });
+</script>
+```
+
 Optional parameters
 -------
 
