@@ -11,13 +11,15 @@ Add the script element inside the **body** of your web page. Put your apikey as 
 That's all :)
 
 ```html
-<script src="https://unpkg.com/blip-sdk-web@0.1.2" type="text/javascript"></script>
+<script src="https://unpkg.com/blip-sdk-web@0.1.7" type="text/javascript"></script>
 <script>
-  (function () {
-    new BlipWebSDK.ChatBuilder()
-      .withApiKey('PUT-YOUR-API-KEY-HERE')
-      .build();
-  })();
+   (function () {
+      window.onload = function () {
+          new BlipWebSDK.ChatBuilder()
+            .withApiKey('PUT-YOUR-API-KEY-HERE')
+            .build();
+          }
+        })();
 </script>
 ```
 
