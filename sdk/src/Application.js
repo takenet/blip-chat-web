@@ -33,7 +33,7 @@ export default class Application {
 
   /* Init chat and set values and styles*/
   openBlipThread(options) {
-    
+
     let chatOpts = { ...this.options, ...options };
     this.options = chatOpts;
 
@@ -48,7 +48,12 @@ export default class Application {
 
     //Chat iframe
     this.chatIframe = document.createElement('iframe');
+    this.chatIframe.id = 'iframe-chat';
     this.chatIframe.src = this.IFRAMEURL + '?' + params;
+    this.chatIframe.onload = function () {
+      var iframe = document.getElementById('iframe-chat');
+      iframe.contentWindow.postMessage('Os dados serão enviados aqui', iframe.src);
+    };
 
     if (opts.target === undefined) {
 
@@ -98,7 +103,7 @@ export default class Application {
       let chatTarget = document.getElementById(opts.target);
 
       chatTarget.appendChild(this.chatEl);
-    }
+    }   
 
   }
 
