@@ -52,8 +52,17 @@ export default class Application {
     this.chatIframe.src = this.IFRAMEURL + '?' + params;
     this.chatIframe.onload = function () {
       var iframe = document.getElementById('iframe-chat');
-      iframe.contentWindow.postMessage('Os dados serão enviados aqui', iframe.src);
+      var userId = getCookie('blipSdkUIdValue');
+      var userPassword = getCookie('blipSdkUPWValue');
+      var message = 
+      {
+        code: 'CookieData',
+        blipSdkUIdValue: userId,
+        blipSdkUPWValue: userPassword
+      };
+      iframe.contentWindow.postMessage(message, iframe.src);
     };
+    window.addEventListener('message', receiveUserFromCommmon);
 
     if (opts.target === undefined) {
 
@@ -124,5 +133,28 @@ export default class Application {
 
   _sendMessage(message) {
     this.chatEl.querySelector('iframe').contentWindow.postMessage(message, '*');
-  }
+  } 
+}
+
+function getCookie(name) {
+    var name = name + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return null;
+}
+
+function receiveUserFromCommmon(event) {
+    var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
+    if (origin !== 'allowed domain'){
+      return;
+    }
 }
