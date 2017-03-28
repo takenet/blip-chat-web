@@ -52,13 +52,11 @@ export default class Application {
     this.chatIframe.src = this.IFRAMEURL + '?' + params;
     this.chatIframe.onload = function () {
       var iframe = document.getElementById('iframe-chat');
-      var userId = getCookie('blipSdkUIdValue');
-      var userPassword = getCookie('blipSdkUPWValue');
+      var account = getCookie('blipSdkUAccount');
       var message = 
       {
         code: 'CookieData',
-        blipSdkUIdValue: userId,
-        blipSdkUPWValue: userPassword
+        userAccount: account,
       };
       iframe.contentWindow.postMessage(message, iframe.src);
     };
@@ -152,9 +150,18 @@ function getCookie(name) {
     return null;
 }
 
+function setCookie(name, value, exdays) {
+    var date = new Date();
+    date.setTime(date.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + date.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
 function receiveUserFromCommmon(event) {
     var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
-    if (origin !== 'allowed domain'){
+    console.log("App received a message: "+ event.data);
+    if (origin !== this.IFRAMEURL){
       return;
     }
+    setCookie('blipSdkUAccount', event.data.userAccount, 365);
 }
