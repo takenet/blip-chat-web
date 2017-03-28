@@ -14,13 +14,13 @@ export default class Application {
     this.IFRAMEURL_HMG = 'https://hmg-sdkcommon.blip.ai/';
     this.IFRAMEURL_LOCAL = 'http://localhost:3000/';
     this.IFRAMEURL_PRD = 'https://sdkcommon.blip.ai/'
-    this.IFRAMEURL = this.IFRAMEURL_LOCAL;
+    Application.IFRAMEURL = this.IFRAMEURL_LOCAL;
 
     if (process.env.NODE_ENV === 'homolog') {
-      this.IFRAMEURL = this.IFRAMEURL_HMG;
+      Application.IFRAMEURL = this.IFRAMEURL_HMG;
     }
     else if (process.env.NODE_ENV === 'production') {
-      this.IFRAMEURL = this.IFRAMEURL_PRD;
+      Application.IFRAMEURL = this.IFRAMEURL_PRD;
     }
 
     //Div container for SDK
@@ -49,15 +49,15 @@ export default class Application {
     //Chat iframe
     this.chatIframe = document.createElement('iframe');
     this.chatIframe.id = 'iframe-chat';
-    this.chatIframe.src = this.IFRAMEURL + '?' + params;
+    this.chatIframe.src = Application.IFRAMEURL + '?' + params;
     this.chatIframe.onload = function () {
       var iframe = document.getElementById('iframe-chat');
       var account = getCookie('blipSdkUAccount');
-      var message = 
-      {
-        code: 'CookieData',
-        userAccount: account,
-      };
+      var message =
+        {
+          code: 'CookieData',
+          userAccount: account,
+        };
       iframe.contentWindow.postMessage(message, iframe.src);
     };
     window.addEventListener('message', receiveUserFromCommmon);
@@ -110,7 +110,7 @@ export default class Application {
       let chatTarget = document.getElementById(opts.target);
 
       chatTarget.appendChild(this.chatEl);
-    }   
+    }
 
   }
 
@@ -131,37 +131,39 @@ export default class Application {
 
   _sendMessage(message) {
     this.chatEl.querySelector('iframe').contentWindow.postMessage(message, '*');
-  } 
+  }
 }
 
 function getCookie(name) {
-    var name = name + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
+  var name = name + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
     }
-    return null;
+    if (c.indexOf(name) == 0) {
+      let value = c.substring(name.length, c.length);
+      setCookie(name, value, 365);
+      return value;
+    }
+  }
+  return null;
 }
 
 function setCookie(name, value, exdays) {
-    var date = new Date();
-    date.setTime(date.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    var expires = "expires=" + date.toUTCString();
-    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+  var date = new Date();
+  date.setTime(date.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  var expires = "expires=" + date.toUTCString();
+  document.cookie = name + "=" + value + ";" + expires + ";path=/";
 }
 
 function receiveUserFromCommmon(event) {
-    var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
-    console.log("App received a message: "+ event.data);
-    if (origin !== this.IFRAMEURL){
-      return;
-    }
-    setCookie('blipSdkUAccount', event.data.userAccount, 365);
+  var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
+  console.log("App received a message: " + event.data);
+  if (Application.IFRAMEURL.indexOf(origin) === -1) {
+    return;
+  }
+  setCookie('blipSdkUAccount', event.data.userAccount, 365);
 }
