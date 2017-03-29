@@ -6,4 +6,5 @@ export default class Constants {
     static get COOKIE_DATA_CODE() { return 'BlipSdkCookieData'; }
     static get SEND_MESSAGE_CODE() { return 'SendMessage'; }
     static get SDK_DEFAULT_TITLE() { return 'Estamos online'; }
+    static get REQUEST_COOKIE_CODE() { return 'RequestCookie'; }
 }

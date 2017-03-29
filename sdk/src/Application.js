@@ -48,16 +48,6 @@ export default class Application {
     this.chatIframe = document.createElement('iframe');
     this.chatIframe.id = 'iframe-chat';
     this.chatIframe.src = Application.IFRAMEURL + '?' + params;
-    this.chatIframe.onload = function () {
-      var iframe = document.getElementById('iframe-chat');
-      var account = getCookie(Constants.USER_ACCOUNT_KEY);
-      var message =
-        {
-          code: Constants.COOKIE_DATA_CODE,
-          userAccount: account,
-        };
-      iframe.contentWindow.postMessage(message, Application.IFRAMEURL);
-    };
     window.addEventListener('message', receiveUserFromCommmon);
 
     if (opts.target === undefined) {
@@ -159,9 +149,21 @@ function setCookie(name, value, exdays) {
 
 function receiveUserFromCommmon(event) {
   var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
-  console.log('App received a message: ' + event.data);
   if (Application.IFRAMEURL.indexOf(origin) === -1) {
     return;
   }
-  setCookie(Constants.USER_ACCOUNT_KEY, event.data.userAccount, 365);
+
+  if (event.data.code === Constants.COOKIE_DATA_CODE) {
+    setCookie(Constants.USER_ACCOUNT_KEY, event.data.userAccount, 365);
+  }
+  else if (event.data.code === Constants.REQUEST_COOKIE_CODE) {
+    var iframe = document.getElementById('iframe-chat');
+    var account = getCookie(Constants.USER_ACCOUNT_KEY);
+    var message =
+      {
+        code: Constants.COOKIE_DATA_CODE,
+        userAccount: account,
+      };
+    iframe.contentWindow.postMessage(message, Application.IFRAMEURL);
+  }
 }
