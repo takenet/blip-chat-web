@@ -1,6 +1,7 @@
 import Style from './style.css';
 import ChatHeaderTemplate from './chat-header.html';
 import ChatFooterTemplate from './chat-footer.html';
+import Constants from './Constants';
 
 export default class Application {
   constructor() {
@@ -11,16 +12,13 @@ export default class Application {
       onLeave: () => { },
     }
 
-    this.IFRAMEURL_HMG = 'https://hmg-sdkcommon.blip.ai/';
-    this.IFRAMEURL_LOCAL = 'http://localhost:3000/';
-    this.IFRAMEURL_PRD = 'https://sdkcommon.blip.ai/'
-    Application.IFRAMEURL = this.IFRAMEURL_LOCAL;
+    Application.IFRAMEURL = Constants.IFRAMEURL_LOCAL; 
 
     if (process.env.NODE_ENV === 'homolog') {
-      Application.IFRAMEURL = this.IFRAMEURL_HMG;
+      Application.IFRAMEURL = Constants.IFRAMEURL_HMG;
     }
     else if (process.env.NODE_ENV === 'production') {
-      Application.IFRAMEURL = this.IFRAMEURL_PRD;
+      Application.IFRAMEURL = Constants.IFRAMEURL_PRD;
     }
 
     //Div container for SDK
@@ -52,10 +50,10 @@ export default class Application {
     this.chatIframe.src = Application.IFRAMEURL + '?' + params;
     this.chatIframe.onload = function () {
       var iframe = document.getElementById('iframe-chat');
-      var account = getCookie('blipSdkUAccount');
+      var account = getCookie(Constants.USER_ACCOUNT_KEY);
       var message =
         {
-          code: 'CookieData',
+          code: Constants.COOKIE_DATA_CODE,
           userAccount: account,
         };
       iframe.contentWindow.postMessage(message, iframe.src);
@@ -125,7 +123,7 @@ export default class Application {
   }
 
   _setChatTitle(title) {
-    let chatTitle = title ? title : 'Estamos online';
+    let chatTitle = title ? title : Constants.SDK_DEFAULT_TITLE;
     this.chatEl.querySelector('#chat-header-text').innerHTML = chatTitle;
   }
 
@@ -135,7 +133,6 @@ export default class Application {
 }
 
 function getCookie(name) {
-  var name = name + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
   var ca = decodedCookie.split(';');
   for (var i = 0; i < ca.length; i++) {
@@ -144,7 +141,7 @@ function getCookie(name) {
       c = c.substring(1);
     }
     if (c.indexOf(name) == 0) {
-      let value = c.substring(name.length, c.length);
+      let value = c.substring(name.length + 1, c.length);
       setCookie(name, value, 365);
       return value;
     }
@@ -155,15 +152,15 @@ function getCookie(name) {
 function setCookie(name, value, exdays) {
   var date = new Date();
   date.setTime(date.getTime() + (exdays * 24 * 60 * 60 * 1000));
-  var expires = "expires=" + date.toUTCString();
-  document.cookie = name + "=" + value + ";" + expires + ";path=/";
+  var expires = 'expires=' + date.toUTCString();
+  document.cookie = name + '=' + value + ';' + expires + ';path=/';
 }
 
 function receiveUserFromCommmon(event) {
   var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
-  console.log("App received a message: " + event.data);
+  console.log('App received a message: ' + event.data);
   if (Application.IFRAMEURL.indexOf(origin) === -1) {
     return;
   }
-  setCookie('blipSdkUAccount', event.data.userAccount, 365);
+  setCookie(Constants.USER_ACCOUNT_KEY, event.data.userAccount, 365);
 }
