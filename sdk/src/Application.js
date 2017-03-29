@@ -12,7 +12,7 @@ export default class Application {
       onLeave: () => { },
     }
 
-    Application.IFRAMEURL = Constants.IFRAMEURL_LOCAL; 
+    Application.IFRAMEURL = Constants.IFRAMEURL_LOCAL;
 
     if (process.env.NODE_ENV === 'homolog') {
       Application.IFRAMEURL = Constants.IFRAMEURL_HMG;
@@ -56,7 +56,7 @@ export default class Application {
           code: Constants.COOKIE_DATA_CODE,
           userAccount: account,
         };
-      iframe.contentWindow.postMessage(message, iframe.src);
+      iframe.contentWindow.postMessage(message, Application.IFRAMEURL);
     };
     window.addEventListener('message', receiveUserFromCommmon);
 
@@ -128,7 +128,8 @@ export default class Application {
   }
 
   _sendMessage(message) {
-    this.chatEl.querySelector('iframe').contentWindow.postMessage(message, '*');
+    var postMessage = { code: Constants.SEND_MESSAGE_CODE, content: message }
+    document.getElementById('iframe-chat').contentWindow.postMessage(message, Application.IFRAMEURL);
   }
 }
 

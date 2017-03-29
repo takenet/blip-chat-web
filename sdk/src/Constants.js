@@ -4,5 +4,6 @@ export default class Constants {
     static get IFRAMEURL_HMG() { return 'https://hmg-sdkcommon.blip.ai/'; }
     static get IFRAMEURL_PRD() { return 'https://sdkcommon.blip.ai/'; }
     static get COOKIE_DATA_CODE() { return 'BlipSdkCookieData'; }
+    static get SEND_MESSAGE_CODE() { return 'SendMessage'; }
     static get SDK_DEFAULT_TITLE() { return 'Estamos online'; }
 }
