@@ -44,7 +44,7 @@ export default class Application {
 
     let params = 'apikey=' + this._apiKey;
     if (this._authType) {
-      params = '&authType=' + this._authType;
+      params += '&authType=' + this._authType;
     }
 
     //Chat iframe
