@@ -43,6 +43,9 @@ export default class Application {
   buildChat(opts) {
 
     let params = 'apikey=' + this._apiKey;
+    if (this._authType) {
+      params = '&authType=' + this._authType;
+    }
 
     //Chat iframe
     this.chatIframe = document.createElement('iframe');

@@ -10,6 +10,11 @@ export default class ChatBuilder {
     return this;
   }
 
+  withAuthType(authType) {
+    this._application._authType = authType;
+    return this;
+  }
+
   build(opts) {    
     this._application.openBlipThread(opts);
   }
