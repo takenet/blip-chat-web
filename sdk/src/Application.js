@@ -48,7 +48,7 @@ export default class Application {
     this.chatIframe = document.createElement('iframe');
     this.chatIframe.id = 'iframe-chat';
     this.chatIframe.src = Application.IFRAMEURL + '?' + params;
-    window.addEventListener('message', receiveUserFromCommmon);
+    window.addEventListener('message', _receiveUserFromCommon);
 
     if (opts.target === undefined) {
 
@@ -123,7 +123,7 @@ export default class Application {
   }
 }
 
-function getCookie(name) {
+function _getCookie(name) {
   var decodedCookie = decodeURIComponent(document.cookie);
   var ca = decodedCookie.split(';');
   for (var i = 0; i < ca.length; i++) {
@@ -133,32 +133,32 @@ function getCookie(name) {
     }
     if (c.indexOf(name) == 0) {
       let value = c.substring(name.length + 1, c.length);
-      setCookie(name, value, 365);
+      _setCookie(name, value, 365);
       return value;
     }
   }
   return null;
 }
 
-function setCookie(name, value, exdays) {
+function _setCookie(name, value, exdays) {
   var date = new Date();
   date.setTime(date.getTime() + (exdays * 24 * 60 * 60 * 1000));
   var expires = 'expires=' + date.toUTCString();
   document.cookie = name + '=' + value + ';' + expires + ';path=/';
 }
 
-function receiveUserFromCommmon(event) {
+function _receiveUserFromCommon(event) {
   var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
   if (Application.IFRAMEURL.indexOf(origin) === -1) {
     return;
   }
 
   if (event.data.code === Constants.COOKIE_DATA_CODE) {
-    setCookie(Constants.USER_ACCOUNT_KEY, event.data.userAccount, 365);
+    _setCookie(Constants.USER_ACCOUNT_KEY, event.data.userAccount, 365);
   }
   else if (event.data.code === Constants.REQUEST_COOKIE_CODE) {
     var iframe = document.getElementById('iframe-chat');
-    var account = getCookie(Constants.USER_ACCOUNT_KEY);
+    var account = _getCookie(Constants.USER_ACCOUNT_KEY);
     var message =
       {
         code: Constants.COOKIE_DATA_CODE,
