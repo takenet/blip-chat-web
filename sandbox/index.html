@@ -31,7 +31,8 @@
         
         var options = {
           title: 'Fale conosco',
-          target: 'sdk-target'
+          target: 'sdk-target',
+          zIndex: 16000
         }
         
         var blipsdk = new BlipWebSDK.ChatBuilder()
@@ -58,7 +59,6 @@
           blipsdk.destroy();
 
           if(options.target !== undefined){
-
             options.target = undefined;
           } else{  
             options.target = 'sdk-target';

@@ -89,6 +89,7 @@ You can also define an optional parameters passing an object inside *build()* me
 | `target` | Target element id for embedding sdk |
 | `onEnter` | Callback action on enter chat |
 | `onLeave` | Callback action on leave chat |
+| `zIndex`  | Define zIndex value for chat window. (Default value: 16000001) |
 
 ### Example
 

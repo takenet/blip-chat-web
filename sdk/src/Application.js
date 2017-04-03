@@ -50,7 +50,9 @@ export default class Application {
     this.chatIframe.src = Application.IFRAMEURL + '?' + params;
     window.addEventListener('message', receiveUserFromCommmon);
 
-    if (opts.target === undefined) {
+    let widgetMode = opts.target === undefined;
+
+    if (widgetMode) {
 
       this.chatEl.innerHTML = ChatHeaderTemplate;
       this.chatEl.innerHTML += ChatFooterTemplate;
@@ -62,6 +64,8 @@ export default class Application {
       this.chatIframe.width = 300;
       this.chatIframe.height = 460;
 
+      //Set zIndex
+      this._setZIndex(opts.zIndex);
 
       //Set chat title
       this._setChatTitle(opts.title);
@@ -115,6 +119,11 @@ export default class Application {
   _setChatTitle(title) {
     let chatTitle = title ? title : Constants.SDK_DEFAULT_TITLE;
     this.chatEl.querySelector('#chat-header-text').innerHTML = chatTitle;
+  }
+
+  _setZIndex(value) {
+    let zIndex = value ? value : 16000001;
+    this.chatEl.style.zIndex = zIndex;
   }
 
   _sendMessage(message) {
