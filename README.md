@@ -85,10 +85,13 @@ You can also define an optional parameters passing an object inside *build()* me
 
 | Option | Description |
 | --- | --- |
+| `authType` | User authentication type &#8727; |
 | `title` | Title of chat window |
 | `target` | Target element id for embedding sdk |
 | `onEnter` | Callback action on enter chat |
 | `onLeave` | Callback action on leave chat |
+
+&#8727; Possible values for authType are: 'Guest', 'Login', 'Dev' and 'StandAlone'.
 
 ### Example
 
