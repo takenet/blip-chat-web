@@ -85,13 +85,13 @@ You can also define optional parameters passing an object inside *build()* metho
 
 | Option | Description |
 | --- | --- |
-| `authType` | User authentication type &#8727; |
+| `authType` | User authentication type (BlipWebSDK.AuthType) &#8727; |
 | `title` | Title of chat window |
 | `target` | Target element id for embedding sdk |
 | `onEnter` | Callback action on enter chat |
 | `onLeave` | Callback action on leave chat |
 
-&#8727; Possible values for authType are: 'Guest', 'Login', 'Dev' and 'StandAlone'. You can access them using 'BlipWebSDK.AuthType' class. 'StandAlone' type will be used as default If you do not define 'authType'.
+&#8727; Possible values for authType are: 'Guest', 'Login' and 'Dev'. You can access them using 'BlipWebSDK.AuthType' class. 'Guest' type will be used as default If you do not define 'authType'.
 
 ### Example
 

@@ -2,11 +2,13 @@ import Style from './style.css';
 import ChatHeaderTemplate from './chat-header.html';
 import ChatFooterTemplate from './chat-footer.html';
 import Constants from './Constants';
+import AuthType from './AuthType';
 
 export default class Application {
   constructor() {
     //Default options
     this.options = {
+      authType: AuthType.GUEST_AUTH,
       title: 'Estamos online',
       onEnter: () => { },
       onLeave: () => { },
@@ -42,10 +44,7 @@ export default class Application {
   /* Build chat HTML element */
   buildChat(opts) {
 
-    let params = 'apikey=' + this._apiKey;
-    if (this.options.authType) {
-      params += '&authType=' + this.options.authType;
-    }
+    let params = 'apikey=' + this._apiKey + '&authType=' + this.options.authType;  
 
     //Chat iframe
     this.chatIframe = document.createElement('iframe');
