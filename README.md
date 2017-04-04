@@ -92,7 +92,7 @@ You can also define optional parameters passing an object inside *build()* metho
 | `onLeave` | Callback action on leave chat |
 | `zIndex`  | Define zIndex value for chat window. (Default value: 16000001) |
 
-&#8727; Possible values for authType are: 'Guest', 'Login' and 'Dev'. You can access them using 'BlipWebSDK.AuthType' class. 'Guest' type will be used as default If you do not define 'authType'. To see more details about authentication types [click here]()
+&#8727; Possible values for authType are: 'Guest', 'Login' and 'Dev'. You can access them using 'BlipWebSDK.AuthType' class. 'Guest' type will be used as default If you do not define 'authType'. To see more details about authentication types [click here](https://github.com/takenet/blip-sdk-web/wiki/Authentication-Types)
 
 ### Example
 
