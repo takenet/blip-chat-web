@@ -7,4 +7,5 @@ export default class Constants {
     static get SEND_MESSAGE_CODE() { return 'SendMessage'; }
     static get SDK_DEFAULT_TITLE() { return 'Estamos online'; }
     static get REQUEST_COOKIE_CODE() { return 'RequestCookie'; }
+    static get COOKIES_EXPIRATION() { return 365; }
 }

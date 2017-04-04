@@ -44,7 +44,15 @@ export default class Application {
   /* Build chat HTML element */
   buildChat(opts) {
 
-    let params = 'apikey=' + this._apiKey + '&authType=' + this.options.authType;  
+    let params = 'apikey=' + this._apiKey + '&authType=' + this.options.authType;
+
+    if (this.options.authType === 'Dev') {
+      var userAccount = {
+        userIdentity: opts.user.id,
+        userPassword: btoa(opts.user.password)
+      }
+      _setCookie(Constants.USER_ACCOUNT_KEY, btoa(JSON.stringify(userAccount)), Constants.COOKIES_EXPIRATION)
+    }
 
     //Chat iframe
     this.chatIframe = document.createElement('iframe');
@@ -144,7 +152,7 @@ function _getCookie(name) {
     }
     if (c.indexOf(name) == 0) {
       let value = c.substring(name.length + 1, c.length);
-      _setCookie(name, value, 365);
+      _setCookie(name, value, Constants.COOKIES_EXPIRATION);
       return value;
     }
   }
@@ -165,7 +173,7 @@ function _receiveUserFromCommon(event) {
   }
 
   if (event.data.code === Constants.COOKIE_DATA_CODE) {
-    _setCookie(Constants.USER_ACCOUNT_KEY, event.data.userAccount, 365);
+    _setCookie(Constants.USER_ACCOUNT_KEY, event.data.userAccount, Constants.COOKIES_EXPIRATION);
   }
   else if (event.data.code === Constants.REQUEST_COOKIE_CODE) {
     var iframe = document.getElementById('iframe-chat');
