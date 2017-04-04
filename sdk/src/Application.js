@@ -46,10 +46,11 @@ export default class Application {
 
     let params = 'apikey=' + this._apiKey + '&authType=' + this.options.authType;
 
-    if (this.options.authType === 'Dev') {
+    if (this.options.authType === AuthType.DEV_AUTH) {
       var userAccount = {
-        userIdentity: opts.user.id,
-        userPassword: btoa(opts.user.password)
+        userIdentity: this._apiKey + '_' + opts.user.id,
+        userPassword: btoa(opts.user.password),
+        authType: this.options.authType
       }
       _setCookie(Constants.USER_ACCOUNT_KEY, btoa(JSON.stringify(userAccount)), Constants.COOKIES_EXPIRATION)
     }
