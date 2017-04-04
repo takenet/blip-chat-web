@@ -8,7 +8,7 @@ export default class Application {
   constructor() {
     //Default options
     this.options = {
-      authType: AuthType.GUEST_AUTH,
+      authType: AuthType.GUEST,
       title: 'Estamos online',
       onEnter: () => { },
       onLeave: () => { },
@@ -46,10 +46,12 @@ export default class Application {
 
     let params = 'apikey=' + this._apiKey + '&authType=' + this.options.authType;
 
-    if (this.options.authType === AuthType.DEV_AUTH) {
+    if (this.options.authType === AuthType.DEV) {
       var userAccount = {
         userIdentity: this._apiKey + '_' + opts.user.id,
         userPassword: btoa(opts.user.password),
+        userName: opts.user.name,
+        userEmail: opts.user.email,
         authType: this.options.authType
       }
       _setCookie(Constants.USER_ACCOUNT_KEY, btoa(JSON.stringify(userAccount)), Constants.COOKIES_EXPIRATION)
