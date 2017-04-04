@@ -47,6 +47,10 @@ export default class Application {
     let params = 'apikey=' + this._apiKey + '&authType=' + this.options.authType;
 
     if (this.options.authType === AuthType.DEV) {
+      if(!opts.user.id || !opts.user.password){
+        console.error('User id and passoword must be defined when on DEV auth type');
+        return;
+      }
       var userAccount = {
         userIdentity: this._apiKey + '_' + opts.user.id,
         userPassword: btoa(opts.user.password),
