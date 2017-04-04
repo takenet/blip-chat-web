@@ -81,19 +81,22 @@ A application that use dojo.js as your AMD
 Optional parameters
 -------
 
-You can also define an optional parameters passing an object inside *build()* method, as you can see below:
+You can also define optional parameters passing an object inside *build()* method, as you can see below:
 
 | Option | Description |
 | --- | --- |
+| `authType` | User authentication type (BlipWebSDK.AuthType) &#8727; |
 | `title` | Title of chat window |
 | `target` | Target element id for embedding sdk |
 | `onEnter` | Callback action on enter chat |
 | `onLeave` | Callback action on leave chat |
 | `zIndex`  | Define zIndex value for chat window. (Default value: 16000001) |
 
+&#8727; Possible values for authType are: 'Guest', 'Login' and 'Dev'. You can access them using 'BlipWebSDK.AuthType' class. 'Guest' type will be used as default If you do not define 'authType'.
+
 ### Example
 
-## SDK as widget 
+## SDK as widget
 
 ```javascript
 var options = {
@@ -111,10 +114,11 @@ new BlipWebSDK.ChatBuilder()
   .build(options);
 ```
 
-## SDK as embedded element
+## SDK as embedded element using 'Login' authentication type
 
 ```javascript
 var options = {
+    authType: BlipWebSDK.AuthType.LOGIN_AUTH,
     title: 'Send a message',
     target: 'your-element-id',
     onEnter: function() {

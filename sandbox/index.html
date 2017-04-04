@@ -29,14 +29,17 @@
     (function () {
       window.onload = function() {
         
+        var apiKey = '072B7F42-D153-4C90-9C39-592F29CC8CCA';
+
         var options = {
+          authType: BlipWebSDK.AuthType.LOGIN_AUTH,
           title: 'Fale conosco',
           target: 'sdk-target',
           zIndex: 16000
         }
         
         var blipsdk = new BlipWebSDK.ChatBuilder()
-          .withApiKey('072B7F42-D153-4C90-9C39-592F29CC8CCA');
+          .withApiKey(apiKey)
         blipsdk.build(options);
 
         sendMessage = function() {
@@ -50,7 +53,7 @@
         buildSDK = function() {
           blipsdk.destroy();
           blipsdk = new BlipWebSDK.ChatBuilder()
-          .withApiKey('072B7F42-D153-4C90-9C39-592F29CC8CCA');
+          .withApiKey(apiKey)
           blipsdk.build();
         }
 
@@ -65,7 +68,7 @@
           }
 
           blipsdk = new BlipWebSDK.ChatBuilder()
-          .withApiKey('072B7F42-D153-4C90-9C39-592F29CC8CCA');
+          .withApiKey(apiKey)
           blipsdk.build(options);
         }
       }
