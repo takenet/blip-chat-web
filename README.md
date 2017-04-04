@@ -30,7 +30,7 @@ If you are using ES6, simply install the `blip-sdk-web` package from the npm reg
 
 `npm install blip-sdk-web`
 
-###Instantiate the BlipSdkWeb class
+### Instantiate the BlipSdkWeb class
 
 ```javascript
 import * as BlipWebSDK from 'blip-sdk-web';
@@ -92,7 +92,7 @@ You can also define optional parameters passing an object inside *build()* metho
 | `onLeave` | Callback action on leave chat |
 | `zIndex`  | Define zIndex value for chat window. (Default value: 16000001) |
 
-&#8727; Possible values for authType are: 'Guest', 'Login' and 'Dev'. You can access them using 'BlipWebSDK.AuthType' class. 'Guest' type will be used as default If you do not define 'authType'.
+&#8727; Possible values for authType are: 'Guest', 'Login' and 'Dev'. You can access them using 'BlipWebSDK.AuthType' class. 'Guest' type will be used as default If you do not define 'authType'. To see more details about authentication types [click here]()
 
 ### Example
 
