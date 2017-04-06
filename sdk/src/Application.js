@@ -47,7 +47,7 @@ export default class Application {
     let params = 'apikey=' + this._apiKey + '&authType=' + this.options.authType;
 
     if (this.options.authType === AuthType.DEV) {
-      if(!opts.user.id || !opts.user.password){
+      if (!opts.user.id || !opts.user.password) {
         console.error('User id and passoword must be defined when on DEV auth type');
         return;
       }
@@ -58,7 +58,7 @@ export default class Application {
         userEmail: opts.user.email,
         authType: this.options.authType
       }
-      _setCookie(Constants.USER_ACCOUNT_KEY, btoa(JSON.stringify(userAccount)), Constants.COOKIES_EXPIRATION)
+      _setToLocalStorage(Constants.USER_ACCOUNT_KEY, btoa(JSON.stringify(userAccount)), Constants.COOKIES_EXPIRATION)
     }
 
     //Chat iframe
@@ -149,28 +149,12 @@ export default class Application {
   }
 }
 
-function _getCookie(name) {
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      let value = c.substring(name.length + 1, c.length);
-      _setCookie(name, value, Constants.COOKIES_EXPIRATION);
-      return value;
-    }
-  }
-  return null;
+function _getFromLocalStorage(name) {
+  return localStorage.getItem(name);
 }
 
-function _setCookie(name, value, exdays) {
-  var date = new Date();
-  date.setTime(date.getTime() + (exdays * 24 * 60 * 60 * 1000));
-  var expires = 'expires=' + date.toUTCString();
-  document.cookie = name + '=' + value + ';' + expires + ';path=/';
+function _setToLocalStorage(name, value) {
+  localStorage.setItem(name, value);
 }
 
 function _receiveUserFromCommon(event) {
@@ -180,11 +164,11 @@ function _receiveUserFromCommon(event) {
   }
 
   if (event.data.code === Constants.COOKIE_DATA_CODE) {
-    _setCookie(Constants.USER_ACCOUNT_KEY, event.data.userAccount, Constants.COOKIES_EXPIRATION);
+    _setToLocalStorage(Constants.USER_ACCOUNT_KEY, event.data.userAccount);
   }
   else if (event.data.code === Constants.REQUEST_COOKIE_CODE) {
     var iframe = document.getElementById('iframe-chat');
-    var account = _getCookie(Constants.USER_ACCOUNT_KEY);
+    var account = _getFromLocalStorage(Constants.USER_ACCOUNT_KEY);
     var message =
       {
         code: Constants.COOKIE_DATA_CODE,
