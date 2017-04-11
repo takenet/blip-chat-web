@@ -72,7 +72,7 @@ A application that use dojo.js as your AMD
 <script>
     require(['BlipWebSDK'], function (sdk) {
         new sdk.ChatBuilder()
-                  .withApiKey('0070F943-4024-4FED-A3BA-BDD50D324F6E')
+                  .withApiKey('PUT-YOUR-API-KEY-HERE')
                   .build();
     });
 </script>
