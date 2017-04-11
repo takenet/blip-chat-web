@@ -7,7 +7,7 @@ SDK to easily add BLiP conversations (chatbots) in your Web page. For more infor
 Installation
 --------
 
-Add the script element inside the **body** of your web page. Put your apikey as asked. *To get your apikey please enter in contact with BLiP team*
+Add the script element inside the **body** of your web page. Put your apikey as asked. *To get your apikey go to [BLiP portal][3]. On the left menu access Publications -> Blip Chat.* 
 That's all :)
 
 ```html
@@ -185,3 +185,4 @@ License
 
  [1]: https://blip.ai
  [2]: https://portal.blip.ai/#/docs/home
+ [3]: https://portal.blip.ai
