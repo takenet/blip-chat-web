@@ -7,11 +7,27 @@ import AuthType from './AuthType';
 export default class Application {
   constructor() {
     //Default options
-    this.options = {
+    let config, window, events;
+
+    config = {
       authType: AuthType.GUEST,
+      user: {},
+    }
+    window = {
+      target: undefined,
       title: 'Estamos online',
+      zIndex: 16000001,
+      widgetColor: '#546E7A',
+    }
+    events = {
       onEnter: () => { },
       onLeave: () => { },
+    }
+
+    this.options = {
+      config: config,
+      window: window,
+      events: events,
     }
 
     Application.IFRAMEURL = Constants.IFRAMEURL_LOCAL;
@@ -32,9 +48,11 @@ export default class Application {
   }
 
   /* Init chat and set values and styles*/
-  openBlipThread(options) {
+  openBlipThread(opts) {
 
-    let chatOpts = { ...this.options, ...options };
+    opts = _parseOldOptionsFormat(opts, this.options);
+
+    let chatOpts = { ...this.options, ...opts };
     this.options = chatOpts;
 
     //Chat HTML element
@@ -44,19 +62,19 @@ export default class Application {
   /* Build chat HTML element */
   buildChat(opts) {
 
-    let params = 'apikey=' + this._apiKey + '&authType=' + this.options.authType;
+    let params = 'apikey=' + this._apiKey + '&authType=' + opts.config.authType;
 
-    if (this.options.authType === AuthType.DEV) {
-      if (!opts.user.id || !opts.user.password) {
+    if (opts.config.authType === AuthType.DEV) {
+      if (!opts.config.user.id || !opts.config.user.password) {
         console.error('User id and passoword must be defined when on DEV auth type');
         return;
       }
       var userAccount = {
-        userIdentity: this._apiKey + '_' + opts.user.id,
-        userPassword: btoa(opts.user.password),
-        userName: opts.user.name,
-        userEmail: opts.user.email,
-        authType: this.options.authType
+        userIdentity: this._apiKey + '_' + opts.config.user.id,
+        userPassword: btoa(opts.config.user.password),
+        userName: opts.config.user.name,
+        userEmail: opts.config.user.email,
+        authType: opts.config.authType
       }
       _setToLocalStorage(Constants.USER_ACCOUNT_KEY, btoa(JSON.stringify(userAccount)), Constants.COOKIES_EXPIRATION)
     }
@@ -67,7 +85,7 @@ export default class Application {
     this.chatIframe.src = Application.IFRAMEURL + '?' + params;
     window.addEventListener('message', _receiveUserFromCommon);
 
-    let widgetMode = opts.target === undefined;
+    let widgetMode = opts.window.target === undefined;
 
     if (widgetMode) {
 
@@ -81,11 +99,8 @@ export default class Application {
       this.chatIframe.width = 300;
       this.chatIframe.height = 460;
 
-      //Set zIndex
-      this._setZIndex(opts.zIndex);
-
-      //Set chat title
-      this._setChatTitle(opts.title);
+      //Set window config
+      this._setWindowOptions(opts.window);
 
       let body = document.getElementsByTagName('body')[0];
       body.appendChild(this.chatEl);
@@ -97,7 +112,7 @@ export default class Application {
 
           //Enter chat callback
           setTimeout(() => {
-            opts.onEnter();
+            opts.events.onEnter();
           }, 500);
         }
         else {
@@ -105,7 +120,7 @@ export default class Application {
 
           //Leave chat callback
           setTimeout(() => {
-            opts.onLeave();
+            opts.events.onLeave();
           }, 500);
         }
       });
@@ -116,7 +131,7 @@ export default class Application {
       this.chatEl.appendChild(this.chatIframe);
 
       this.chatIframe.className += ' target-window';
-      let chatTarget = document.getElementById(opts.target);
+      let chatTarget = document.getElementById(opts.window.target);
 
       chatTarget.appendChild(this.chatEl);
     }
@@ -124,13 +139,19 @@ export default class Application {
   }
 
   destroy() {
-    if (this.options.target !== undefined) {
-      let element = document.getElementById(this.options.target);
+    if (this.options.window.target !== undefined) {
+      let element = document.getElementById(this.options.window.target);
       element.removeChild(this.chatEl);
     } else {
       let body = document.getElementsByTagName('body')[0];
       body.removeChild(this.chatEl);
     }
+  }
+
+  _setWindowOptions(windowOpts) {
+    this._setChatTitle(windowOpts.title);
+    this._setZIndex(windowOpts.zIndex);
+    this._setWidgetColor(windowOpts.widgetColor);
   }
 
   _setChatTitle(title) {
@@ -143,11 +164,39 @@ export default class Application {
     this.chatEl.style.zIndex = zIndex;
   }
 
+  _setWidgetColor(color) {
+    this.chatEl.style.backgroundColor = color;
+  }
+
   _sendMessage(message) {
     var postMessage = { code: Constants.SEND_MESSAGE_CODE, content: message }
     document.getElementById('iframe-chat').contentWindow.postMessage(message, Application.IFRAMEURL);
   }
+
 }
+
+function _parseOldOptionsFormat(opts, defaultOpts) {
+    if (opts.config || opts.window || opts.events) {
+      return opts;
+    }
+
+    return {
+      config: {
+        authType: opts.authType || defaultOpts.config.authType,
+        user: opts.user || defaultOpts.config.user 
+      },
+      window: {
+        target: opts.target || defaultOpts.window.target ,
+        title: opts.title || defaultOpts.window.title ,
+        zIndex: opts.zIndex || defaultOpts.window.zIndex
+      },
+      events: {
+        onEnter: opts.onEnter || defaultOpts.events.onEnter,
+        onLeave: opts.onLeave || defaultOpts.events.onLeave,
+      }
+    }
+
+  }
 
 function _getFromLocalStorage(name) {
   return localStorage.getItem(name);

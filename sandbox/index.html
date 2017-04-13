@@ -35,12 +35,9 @@
 
           <form>
             Full Name: <input type="text" id="fullName">
-            <br> 
-            Email: <input type="text" id="email">
-            <br>
-            Id: <input type="text" id="userId" value="391f4be0-ae0a-43fa-919a-a729df697a42" disabled="disabled">
-            <br>
-            Password: <input type="text" id="userPass" value="2569cf92-bdcf-4684-9cd9-1d1641bf10e5" disabled="disabled">
+            <br> Email: <input type="text" id="email">
+            <br> Id: <input type="text" id="userId" value="391f4be0-ae0a-43fa-919a-a729df697a42" disabled="disabled">
+            <br> Password: <input type="text" id="userPass" value="2569cf92-bdcf-4684-9cd9-1d1641bf10e5" disabled="disabled">
             <br>
           </form>
         </div>
@@ -51,63 +48,81 @@
   <div id="sdk-target" style="height:550px; width: 50%"> </div>
 
   <script>
-      var sendMessage;
-      var destroySDK;
-      var buildSDK;
-      var currentTemplate;
-      var blipsdk;
-      (function () {
-          window.onload = function () {
+                           var sendMessage;
+                           var destroySDK;
+                           var buildSDK;
+                           var currentTemplate;
+                           var blipsdk;
+                           (function () {
+                             window.onload = function () {
 
-              var apiKey = '072B7F42-D153-4C90-9C39-592F29CC8CCA';
+                               var apiKey = 'YOUR-API-KEY';
 
-              var options = {
-                  title: 'BLiP Chat Title Sample',
-                  authType: BlipWebSDK.AuthType.GUEST,
-                  target: 'sdk-target',
-              }
+                               //  var options = {
+                               //    title: 'BLiP Chat Title Sample',
+                               //    authType: BlipWebSDK.AuthType.DEV,
+                               //    user: {
+                               //      id: '123qwe',
+                               //      password: '12345'
+                               //    },
+                               //    target: 'sdk-target',
+                               //    zIndex: 123,
+                               //  }
 
-              sendMessage = function () {
-                  blipsdk.sendMessage('teste');
-              }
+                               var options = {
+                                 config: {
+                                   authType: BlipWebSDK.AuthType.GUEST
+                                 },
+                                 window: {
+                                   target: 'sdk-target',
+                                   title: 'BLiP Chat Title Sample',
+                                   widgetColor: '#e00303'
+                                 }
+                               }
 
-              destroySDK = function () {
-                  blipsdk.destroy();
-              }
+                               sendMessage = function () {
+                                 blipsdk.sendMessage('teste');
+                               }
 
-              buildSDK = function (authType) {
-                  if(blipsdk){
-                    blipsdk.destroy();
-                  }
+                               destroySDK = function () {
+                                 blipsdk.destroy();
+                               }
 
-                  options.target = currentTemplate;
-                  options.authType = authType;
-                  options.user = {
-                      id: document.getElementById('userId').value, // Required
-                      password: document.getElementById('userPass').value, // Required
-                      name: document.getElementById('fullName').value ? document.getElementById('fullName').value : '', // Optional
-                      email: document.getElementById('email').value ? document.getElementById('email').value : ''// Optional
-                  };
+                               buildSDK = function (authType) {
+                                 if (blipsdk) {
+                                   blipsdk.destroy();
+                                 }
 
-                  blipsdk = new BlipWebSDK.ChatBuilder()
-                      .withApiKey(apiKey)
-                  blipsdk.build(options);
-              }
+                                 options.window.target = currentTemplate;
+                                 options.config.authType = authType;
+                                 options.config.user = {
+                                   id: document.getElementById('userId').value, // Required
+                                   password: document.getElementById('userPass').value, // Required
+                                   name: document.getElementById('fullName').value ? document.getElementById('fullName').value : '', // Optional
+                                   email: document.getElementById('email').value ? document.getElementById('email').value : ''// Optional
+                                 };
 
-              changeSDK = function () {
+                                 blipsdk = new BlipWebSDK.ChatBuilder()
+                                   .withApiKey(apiKey)
+                                 blipsdk.build(options);
+                               }
 
-                  if (currentTemplate !== undefined) {
-                      currentTemplate = undefined;
-                  } else {
-                      currentTemplate = 'sdk-target';
-                  }
+                               changeSDK = function () {
 
-                  buildSDK(BlipWebSDK.AuthType.GUEST);
-              }
+                                 if (currentTemplate !== undefined) {
+                                   currentTemplate = undefined;
+                                 } else {
+                                   currentTemplate = 'sdk-target';
+                                 }
 
-              buildSDK(BlipWebSDK.AuthType.GUEST);
-          }
-          })();
+                                 buildSDK(BlipWebSDK.AuthType.GUEST);
+                               }
+
+                               buildSDK(BlipWebSDK.AuthType.GUEST);
+
+
+                             }
+                           })();
   </script>
 </body>
 
