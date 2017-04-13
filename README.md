@@ -83,29 +83,51 @@ Optional parameters
 
 You can also define optional parameters passing an object inside *build()* method, as you can see below:
 
-| Option | Description |
+Options object contains three properties: 
+
+### Config
+
+| Propertie | Description |
 | --- | --- |
 | `authType` | User authentication type (BlipWebSDK.AuthType) &#8727; |
-| `title` | Title of chat window |
-| `target` | Target element id for embedding sdk |
-| `onEnter` | Callback action on enter chat |
-| `onLeave` | Callback action on leave chat |
-| `zIndex`  | Define zIndex value for chat window. (Default value: 16000001) |
+| `user` | User data with `id`, `password`, `name` and `email` properties |
 
 &#8727; Possible values for authType are: 'Guest', 'Login' and 'Dev'. You can access them using 'BlipWebSDK.AuthType' class. 'Guest' type will be used as default If you do not define 'authType'. To see more details about authentication types [click here](https://github.com/takenet/blip-sdk-web/wiki/Authentication-Types)
 
-### Example
+### Window
 
-## SDK as widget
+| Option | Description |
+| --- | --- |
+| `title` | Title of chat window |
+| `target` | Target element id for embedding sdk |
+| `zIndex`  | Define zIndex value for chat window. (Default value: 16000001) |
+| `widgetColor`  | Define color value for chat widget. (Default value: '#546E7A') |
+
+### Events
+
+| Option | Description |
+| --- | --- |
+| `onEnter` | Callback action on enter chat |
+| `onLeave` | Callback action on leave chat |
+
+Examples
+---------
+
+### SDK as widget
 
 ```javascript
-var options = {
-    title: 'Send a message',
-    onEnter: function() {
-        console.log("I'm in the chat!");
+var options = 
+{
+    window: {
+        title: 'Send a message'                              
     },
-    onLeave: function() {
-        console.log("I'm out the chat!");
+    events: {
+        onEnter: function() {
+            console.log("I'm in the chat!");
+        },
+        onLeave: function() {
+            console.log("I'm out the chat!");
+        }
     }
 };
 
@@ -114,18 +136,25 @@ new BlipWebSDK.ChatBuilder()
   .build(options);
 ```
 
-## SDK as embedded element using 'Login' authentication type
+### SDK as embedded element using 'Login' authentication type
 
 ```javascript
-var options = {
-    authType: BlipWebSDK.AuthType.LOGIN_AUTH,
-    title: 'Send a message',
-    target: 'your-element-id',
-    onEnter: function() {
-        console.log("I'm in the chat!");
+var options = 
+{
+    config: {
+        authType: BlipWebSDK.AuthType.LOGIN_AUTH
     },
-    onLeave: function() {
-        console.log("I'm out the chat!");
+    window: {
+        title: 'Send a message',
+        target: 'your-element-id'                              
+    },
+    events: {
+        onEnter: function() {
+            console.log("I'm in the chat!");
+        },
+        onLeave: function() {
+            console.log("I'm out the chat!");
+        }
     }
 };
 
@@ -143,13 +172,18 @@ To destroy BLiP widget you must use a **destroy** method on chat builder variabl
 ### Example
 
 ```javascript
-var options = {
-    title: 'Send a message',
-    onEnter: function() {
-        console.log("I'm in the chat!");
+var options = 
+{
+    window: {
+        title: 'Send a message'                              
     },
-    onLeave: function() {
-        console.log("I'm out the chat!");
+    events: {
+        onEnter: function() {
+            console.log("I'm in the chat!");
+        },
+        onLeave: function() {
+            console.log("I'm out the chat!");
+        }
     }
 };
 
