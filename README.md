@@ -96,7 +96,7 @@ Options object contains three properties:
 
 ### Window
 
-| Option | Description |
+| Propertie | Description |
 | --- | --- |
 | `title` | Title of chat window |
 | `target` | Target element id for embedding sdk |
@@ -105,7 +105,7 @@ Options object contains three properties:
 
 ### Events
 
-| Option | Description |
+| Propertie | Description |
 | --- | --- |
 | `onEnter` | Callback action on enter chat |
 | `onLeave` | Callback action on leave chat |
@@ -142,7 +142,7 @@ new BlipWebSDK.ChatBuilder()
 var options = 
 {
     config: {
-        authType: BlipWebSDK.AuthType.LOGIN_AUTH
+        authType: BlipWebSDK.AuthType.LOGIN
     },
     window: {
         title: 'Send a message',
