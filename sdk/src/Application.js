@@ -96,7 +96,6 @@ export default class Application {
       this.chatEl.className = 'blip-hidden-chat';
    
       this.chatEl.className += ' fixed-window';
-
       let hideBottonMobile;
       let isMobile = _isMobile(navigator.userAgent || navigator.vendor || window.opera);
 
@@ -104,9 +103,9 @@ export default class Application {
       if (isMobile) {
         this.chatIframe.width = window.innerWidth;
         this.chatIframe.height = window.innerHeight - 60;
-        this.chatEl.style.right = "0px";
         hideBottonMobile = parseInt(this.chatIframe.height) + 20;
         styleHiddenChat.innerHTML = '.blip-hidden-chat { bottom: -' + hideBottonMobile + 'px !important; }';
+        this.chatEl.setAttribute('class', 'blip-hidden-chat mobile-closed-fixed-window');
         this.chatEl.appendChild(styleHiddenChat);
       } else {
         this.chatIframe.width = 300;
@@ -122,7 +121,13 @@ export default class Application {
       let closeBtn = document.getElementById('blip-close-btn');
       closeBtn.addEventListener('click', () => {
         if (this.chatEl.getAttribute('class').indexOf('blip-hidden-chat') == ! -1) {
-          this.chatEl.setAttribute('class', 'blip-show-chat fixed-window');
+
+          if(isMobile) {
+            this.chatEl.setAttribute('class', 'blip-show-chat mobile-open-fixed-window');
+            document.getElementsByClassName('blip-minimize')[0].style.visibility = "visible";
+          }else{
+            this.chatEl.setAttribute('class', 'blip-show-chat fixed-window');
+          }
 
           //Enter chat callback
           setTimeout(() => {
@@ -130,11 +135,12 @@ export default class Application {
           }, 500);
         }
         else {
-          this.chatEl.setAttribute('class', 'blip-hidden-chat fixed-window');
 
-          if (isMobile) {
-            styleHiddenChat.innerHTML = '.blip-hidden-chat { bottom: -' + hideBottonMobile + 'px !important; }';
-            this.chatEl.appendChild(styleHiddenChat);
+          if(isMobile) {
+            this.chatEl.setAttribute('class', 'blip-hidden-chat mobile-closed-fixed-window');
+            document.getElementsByClassName('blip-minimize')[0].style.visibility = "hidden";
+          }else{
+            this.chatEl.setAttribute('class', 'blip-hidden-chat fixed-window');
           }
 
           //Leave chat callback
