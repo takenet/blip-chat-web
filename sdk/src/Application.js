@@ -117,10 +117,10 @@ export default class Application {
       closeBtn.addEventListener('click', () => {
         if (this.chatEl.getAttribute('class').indexOf('blip-hidden-chat') == ! -1) {
 
-          if(isMobile) {
+          if (isMobile) {
             this.chatEl.setAttribute('class', 'blip-show-chat mobile-open-fixed-window');
             document.getElementsByClassName('blip-minimize')[0].style.visibility = "visible";
-          }else{
+          } else {
             this.chatEl.setAttribute('class', 'blip-show-chat fixed-window');
           }
 
@@ -131,10 +131,10 @@ export default class Application {
         }
         else {
 
-          if(isMobile) {
+          if (isMobile) {
             this.chatEl.setAttribute('class', 'blip-hidden-chat mobile-closed-fixed-window');
             document.getElementsByClassName('blip-minimize')[0].style.visibility = "hidden";
-          }else{
+          } else {
             this.chatEl.setAttribute('class', 'blip-hidden-chat fixed-window');
           }
 
@@ -196,19 +196,14 @@ export default class Application {
 }
 
 function _parseOldOptionsFormat(opts, defaultOpts) {
-<<<<<<< HEAD
+
+  if (!opts) {
+    return defaultOpts;
+  }
+
   if (opts.config || opts.window || opts.events) {
     return opts;
   }
-=======
-    if(!opts){
-      return defaultOpts;
-    }
-
-    if (opts.config || opts.window || opts.events) {
-      return opts;
-    }
->>>>>>> master
 
   return {
     config: {
