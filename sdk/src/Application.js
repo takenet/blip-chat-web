@@ -176,6 +176,10 @@ export default class Application {
 }
 
 function _parseOldOptionsFormat(opts, defaultOpts) {
+    if(!opts){
+      return defaultOpts;
+    }
+
     if (opts.config || opts.window || opts.events) {
       return opts;
     }
