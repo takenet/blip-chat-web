@@ -65,7 +65,7 @@ export default class Application {
     let params = 'apikey=' + this._apiKey + '&authType=' + opts.config.authType;
 
     if (opts.config.authType === AuthType.DEV) {
-      if (!opts.config.user.id || !opts.config.user.password) {
+      if (!opts.config.user || !opts.config.user.id || !opts.config.user.password) {
         console.error('User id and passoword must be defined when on DEV auth type');
         return;
       }
