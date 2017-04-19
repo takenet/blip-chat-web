@@ -119,7 +119,8 @@ Examples
 var options = 
 {
     window: {
-        title: 'Send a message'                              
+        title: 'Send a message',        
+        widgetColor: '#546E7A'
     },
     events: {
         onEnter: function() {

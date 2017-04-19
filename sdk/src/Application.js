@@ -196,9 +196,19 @@ export default class Application {
 }
 
 function _parseOldOptionsFormat(opts, defaultOpts) {
+<<<<<<< HEAD
   if (opts.config || opts.window || opts.events) {
     return opts;
   }
+=======
+    if(!opts){
+      return defaultOpts;
+    }
+
+    if (opts.config || opts.window || opts.events) {
+      return opts;
+    }
+>>>>>>> master
 
   return {
     config: {
