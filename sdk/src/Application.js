@@ -94,19 +94,14 @@ export default class Application {
       this.chatEl.appendChild(this.chatIframe);
 
       this.chatEl.className = 'blip-hidden-chat';
-   
       this.chatEl.className += ' fixed-window';
-      let hideBottonMobile;
+
       let isMobile = _isMobile(navigator.userAgent || navigator.vendor || window.opera);
 
-      var styleHiddenChat = document.createElement('style');
       if (isMobile) {
         this.chatIframe.width = window.innerWidth;
         this.chatIframe.height = window.innerHeight - 60;
-        hideBottonMobile = parseInt(this.chatIframe.height) + 20;
-        styleHiddenChat.innerHTML = '.blip-hidden-chat { bottom: -' + hideBottonMobile + 'px !important; }';
         this.chatEl.setAttribute('class', 'blip-hidden-chat mobile-closed-fixed-window');
-        this.chatEl.appendChild(styleHiddenChat);
       } else {
         this.chatIframe.width = 300;
         this.chatIframe.height = 460;

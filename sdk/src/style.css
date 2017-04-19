@@ -75,7 +75,15 @@
   color: white;
 }
 
-.blip-hidden-chat { bottom: -480px !important; }
+.blip-hidden-chat.mobile-closed-fixed-window {
+  transform: translateY(100vh);
+  top: -40px;  
+}
+
+.blip-hidden-chat.fixed-window {
+  transform: translateY(480px);  
+}
+
 .blip-show-chat { bottom: 0; }
 
 .blip-minimize {
