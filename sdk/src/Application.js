@@ -201,7 +201,7 @@ function _parseOldOptionsFormat(opts, defaultOpts) {
       title: opts.title || defaultOpts.window.title,
       iconPath: opts.iconPath || defaultOpts.window.iconPath,
       zIndex: opts.zIndex || defaultOpts.window.zIndex,
-      widgetColor: widgetColor || defaultOpts.window.widgetColor
+      widgetColor: opts.widgetColor || defaultOpts.window.widgetColor
     },
     events: {
       onEnter: opts.onEnter || defaultOpts.events.onEnter,
