@@ -15,9 +15,10 @@ export default class Application {
     }
     window = {
       target: undefined,
-      title: 'Estamos online',
-      zIndex: 16000001,
-      widgetColor: '#546E7A',
+      title: Constants.SDK_DEFAULT_TITLE,
+      iconPath: Constants.SDK_DEFAULT_ICON_PATH,
+      zIndex: Constants.SDK_DEFAULT_Z_INDEX,
+      widgetColor: Constants.SDK_DEFAULT_WIDGET_COLOR,     
     }
     events = {
       onEnter: () => { },
@@ -150,17 +151,23 @@ export default class Application {
 
   _setWindowOptions(windowOpts) {
     this._setChatTitle(windowOpts.title);
+    this._setChatIcon(windowOpts.iconPath);
     this._setZIndex(windowOpts.zIndex);
     this._setWidgetColor(windowOpts.widgetColor);
   }
 
   _setChatTitle(title) {
-    let chatTitle = title ? title : Constants.SDK_DEFAULT_TITLE;
+    let chatTitle = title || Constants.SDK_DEFAULT_TITLE;
     this.chatEl.querySelector('#chat-header-text').innerHTML = chatTitle;
   }
 
+  _setChatIcon(iconPath) {
+    let chatIconPath = iconPath || Constants.SDK_DEFAULT_ICON_PATH;
+    this.chatEl.querySelector('#chat-header-icon').src = chatIconPath;
+  }
+
   _setZIndex(value) {
-    let zIndex = value ? value : 16000001;
+    let zIndex = value || Constants.SDK_DEFAULT_Z_INDEX;
     this.chatEl.style.zIndex = zIndex;
   }
 

@@ -6,6 +6,9 @@ export default class Constants {
     static get COOKIE_DATA_CODE() { return 'BlipSdkCookieData'; }
     static get SEND_MESSAGE_CODE() { return 'SendMessage'; }
     static get SDK_DEFAULT_TITLE() { return 'Estamos online'; }
+    static get SDK_DEFAULT_ICON_PATH() { return 'https://takenetomni.blob.core.windows.net/media-db/blip-app-white.png'; }
+    static get SDK_DEFAULT_WIDGET_COLOR() { return '#546E7A'; }
+    static get SDK_DEFAULT_Z_INDEX() { return 16000001; }
     static get REQUEST_COOKIE_CODE() { return 'RequestCookie'; }
     static get COOKIES_EXPIRATION() { return 365; }
 }
