@@ -98,8 +98,9 @@ Options object contains three properties:
 
 | Propertie | Description |
 | --- | --- |
-| `title` | Title of chat window |
 | `target` | Target element id for embedding sdk |
+| `title` | Title of chat window |
+| `iconPath` | Icon url for chat window |
 | `zIndex`  | Define zIndex value for chat window. (Default value: 16000001) |
 | `widgetColor`  | Define color value for chat widget. (Default value: '#546E7A') |
 
@@ -120,7 +121,8 @@ var options =
 {
     window: {
         title: 'Send a message',        
-        widgetColor: '#546E7A'
+        widgetColor: '#546E7A',
+        iconPath: 'https://takenetomni.blob.core.windows.net/media-db/blip-app-white.png'
     },
     events: {
         onEnter: function() {

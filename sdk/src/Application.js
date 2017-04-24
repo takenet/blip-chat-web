@@ -18,7 +18,7 @@ export default class Application {
       title: Constants.SDK_DEFAULT_TITLE,
       iconPath: Constants.SDK_DEFAULT_ICON_PATH,
       zIndex: Constants.SDK_DEFAULT_Z_INDEX,
-      widgetColor: Constants.SDK_DEFAULT_WIDGET_COLOR,     
+      widgetColor: Constants.SDK_DEFAULT_WIDGET_COLOR,
     }
     events = {
       onEnter: () => { },
@@ -183,31 +183,33 @@ export default class Application {
 }
 
 function _parseOldOptionsFormat(opts, defaultOpts) {
-    if(!opts){
-      return defaultOpts;
-    }
-
-    if (opts.config || opts.window || opts.events) {
-      return opts;
-    }
-
-    return {
-      config: {
-        authType: opts.authType || defaultOpts.config.authType,
-        user: opts.user || defaultOpts.config.user 
-      },
-      window: {
-        target: opts.target || defaultOpts.window.target ,
-        title: opts.title || defaultOpts.window.title ,
-        zIndex: opts.zIndex || defaultOpts.window.zIndex
-      },
-      events: {
-        onEnter: opts.onEnter || defaultOpts.events.onEnter,
-        onLeave: opts.onLeave || defaultOpts.events.onLeave,
-      }
-    }
-
+  if (!opts) {
+    return defaultOpts;
   }
+
+  if (opts.config || opts.window || opts.events) {
+    return opts;
+  }
+
+  return {
+    config: {
+      authType: opts.authType || defaultOpts.config.authType,
+      user: opts.user || defaultOpts.config.user
+    },
+    window: {
+      target: opts.target || defaultOpts.window.target,
+      title: opts.title || defaultOpts.window.title,
+      iconPath: opts.iconPath || defaultOpts.window.iconPath,
+      zIndex: opts.zIndex || defaultOpts.window.zIndex,
+      widgetColor: widgetColor || defaultOpts.window.widgetColor
+    },
+    events: {
+      onEnter: opts.onEnter || defaultOpts.events.onEnter,
+      onLeave: opts.onLeave || defaultOpts.events.onLeave,
+    }
+  }
+
+}
 
 function _getFromLocalStorage(name) {
   return localStorage.getItem(name);
