@@ -101,11 +101,7 @@ export default class Application {
       if (isMobile) {
         this.chatIframe.width = window.innerWidth;
         this.chatIframe.height = window.innerHeight - 60;
-        this.chatEl.setAttribute('class', 'blip-hidden-chat mobile-closed-fixed-window');
-        window.addEventListener("orientationchange", () => { // Detect window rotation and resize the iframe
-          this.chatIframe.width = window.innerWidth;
-          this.chatIframe.height = window.innerHeight - 60;
-        });
+        this.chatEl.setAttribute('class', 'blip-hidden-chat mobile-closed-fixed-window');       
       } else {
         this.chatIframe.width = 300;
         this.chatIframe.height = 460;
