@@ -124,6 +124,9 @@ export default class Application {
             let body = document.getElementsByTagName('body')[0];
             html.style.overflow = body.style.overflow = 'hidden';
             html.style.height = body.style.height = '0';
+            if(_isIOS()) {
+                this.chatEl.style.position = 'absolute';
+            }
           } else {
             this.chatEl.setAttribute('class', 'blip-show-chat fixed-window');
           }
@@ -142,6 +145,9 @@ export default class Application {
             let body = document.getElementsByTagName('body')[0];
             html.style.overflow = body.style.overflow = '';
             html.style.height = body.style.height = '';
+            if(_isIOS()) {
+                this.chatEl.style.position = 'fixed';
+            }
           } else {
             this.chatEl.setAttribute('class', 'blip-hidden-chat fixed-window');
           }
@@ -265,4 +271,8 @@ function _isMobile(a) {
     return true;
 
   return false;
+}
+
+function _isIOS(a) {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 }
