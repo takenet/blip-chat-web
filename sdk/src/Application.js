@@ -101,7 +101,7 @@ export default class Application {
       if (isMobile) {
         this.chatIframe.width = window.innerWidth;
         this.chatIframe.height = window.innerHeight - 60;
-        this.chatEl.setAttribute('class', 'blip-hidden-chat mobile-closed-fixed-window');       
+        this.chatEl.setAttribute('class', 'blip-hidden-chat mobile-closed-fixed-window');        
       } else {
         this.chatIframe.width = 300;
         this.chatIframe.height = 460;
@@ -120,6 +120,10 @@ export default class Application {
           if (isMobile) {
             this.chatEl.setAttribute('class', 'blip-show-chat mobile-open-fixed-window');
             document.getElementsByClassName('blip-minimize')[0].style.visibility = "visible";
+            let html = document.getElementsByTagName('html')[0];
+            let body = document.getElementsByTagName('body')[0];
+            html.style.overflow = body.style.overflow = 'hidden';
+            html.style.height = body.style.height = '0';
           } else {
             this.chatEl.setAttribute('class', 'blip-show-chat fixed-window');
           }
@@ -134,6 +138,10 @@ export default class Application {
           if (isMobile) {
             this.chatEl.setAttribute('class', 'blip-hidden-chat mobile-closed-fixed-window');
             document.getElementsByClassName('blip-minimize')[0].style.visibility = "hidden";
+            let html = document.getElementsByTagName('html')[0];
+            let body = document.getElementsByTagName('body')[0];
+            html.style.overflow = body.style.overflow = '';
+            html.style.height = body.style.height = '';
           } else {
             this.chatEl.setAttribute('class', 'blip-hidden-chat fixed-window');
           }
