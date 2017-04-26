@@ -212,11 +212,17 @@ function _parseOldOptionsFormat(opts, defaultOpts) {
 }
 
 function _getFromLocalStorage(name) {
-  return localStorage.getItem(name);
+  if(supportsLocalStorage()) {
+    return localStorage.getItem(name);
+  }else{
+    return null;
+  }
 }
 
 function _setToLocalStorage(name, value) {
-  localStorage.setItem(name, value);
+  if(supportsLocalStorage()){
+    localStorage.setItem(name, value);
+  }
 }
 
 function _receiveUserFromCommon(event) {
@@ -237,5 +243,13 @@ function _receiveUserFromCommon(event) {
         userAccount: account,
       };
     iframe.contentWindow.postMessage(message, Application.IFRAMEURL);
+  }
+}
+
+function supportsLocalStorage() {
+  try {
+    return 'localStorage' in window && window['localStorage'] !== null;
+  } catch (e) {
+    return false;
   }
 }
