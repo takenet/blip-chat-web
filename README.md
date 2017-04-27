@@ -2,7 +2,7 @@
 Blip SDK for Web
 ======
 
-SDK to easily add BLiP conversations (chatbots) in your Web page. For more information see [BLiP portal][1] and [BLiP documentation][2].
+SDK to easily add BLiP conversations (chatbots) in your Web page. For more information see [BLiP portal][1] and [BLiP documentation][2]. See supported versions [here](#support)
 
 Installation
 --------
@@ -202,17 +202,17 @@ chatBuilder = new BlipWebSDK.ChatBuilder()
   .withApiKey('PUT-YOUR-API-KEY-HERE')
   .build(options);
 ```
-Support
+### Support
 --------
 
 * **Safari:** Version 9.1.2 or later
 * **Google Chrome:**  Version 40 or later
 * **Firefox:** Version 48 or later
 * **Opera:** Version 35 or later
-* **Internet Explorer:** Not recommended &#8727;
 * **Microsoft EDGE:** Version 14 or later 
+* **Internet Explorer:** _Not recommended_ &#8727;
 
-&#8727; It is not recommended to use Internet Explorer due to some restrictions as carousel card not supported and card layout problems.
+&#8727; _It is not recommended to use Internet Explorer due to some restrictions as carousel card not supported and card layout problems._
 
 License
 -------
