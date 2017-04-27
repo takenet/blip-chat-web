@@ -2,7 +2,7 @@
 Blip SDK for Web
 ======
 
-SDK to easily add BLiP conversations (chatbots) in your Web page. For more information see [BLiP portal][1] and [BLiP documentation][2]. See supported versions [here](#support)
+SDK to easily add BLiP conversations (chatbots) in your Web page. For more information see [BLiP portal][1] and [BLiP documentation][2]. See supported versions [here](#support).
 
 Installation
 --------
