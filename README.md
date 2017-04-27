@@ -202,7 +202,17 @@ chatBuilder = new BlipWebSDK.ChatBuilder()
   .withApiKey('PUT-YOUR-API-KEY-HERE')
   .build(options);
 ```
+Support
+--------
 
+* **Safari:** Version 9.1.2 or later
+* **Google Chrome:**  Version 40 or later
+* **Firefox:** Version 48 or later
+* **Opera:** Version 35 or later
+* **Internet Explorer:** Not recommended &#8727;
+* **Microsoft EDGE:** Version 14 or later 
+
+&#8727; It is not recommended to use Internet Explorer due to some restrictions as carousel card not supported and card layout problems.
 
 License
 -------
