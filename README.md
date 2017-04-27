@@ -210,7 +210,7 @@ chatBuilder = new BlipWebSDK.ChatBuilder()
 * **Firefox:** Version 48 or later
 * **Opera:** Version 35 or later
 * **Microsoft EDGE:** Version 14 or later 
-* **Internet Explorer:** _Not recommended_ &#8727;
+* **Internet Explorer 11:** _Not recommended_ &#8727;
 
 &#8727; _It is not recommended to use Internet Explorer due to some restrictions as carousel card not supported and card layout problems._
 
