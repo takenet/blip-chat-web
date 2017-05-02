@@ -205,7 +205,7 @@ chatBuilder = new BlipWebSDK.ChatBuilder()
 ### Support
 --------
 
-* **Safari:** Version 9.1.2 or later
+* **Safari:** Version 10.1.1 or later
 * **Google Chrome:**  Version 40 or later
 * **Firefox:** Version 48 or later
 * **Opera:** Version 35 or later
