@@ -6,7 +6,10 @@
   line-height: 1.42857143;
 }
 
-#take-chat iframe { border: 0; }
+#take-chat iframe { 
+  border: 0; 
+  width: 100%;
+}
 
 .fixed-window{
   border-radius: 10px 10px 0 0;
@@ -15,6 +18,30 @@
   position: fixed;
   bottom: 0;
   right: 30px;
+  width: 300px;
+  transition: 700ms;
+}
+
+.mobile-closed-fixed-window{
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 0 20px 1px rgba(0,0,0,.26);
+  padding: 40px 0px 0px 0px;
+  position: fixed;
+  bottom: 0;
+  right: 0px;  
+  width: 300px;
+  transition: 700ms;
+}
+
+.mobile-open-fixed-window{
+  border-radius: 0;
+  box-shadow: 0 0 20px 1px rgba(0,0,0,.26);
+  padding: 40px 0px 0px 0px;
+  position: fixed;
+  bottom: 0;
+  right: 0px;
+  width: 100%;
+  height: calc(100% - 40px);
   transition: 700ms;
 }
 
@@ -35,7 +62,7 @@
   cursor: pointer;
 }
 
-#blip-close-btn img {
+#blip-close-btn .blip-logo {
   max-width: 18px;
   width: 18px;
   margin-right: 5px;
@@ -48,9 +75,32 @@
   right: 5px;
   font-size: 12px;
   font-weight: bold;
-  cursor: pointer;
   color: white;
 }
 
-.blip-hidden-chat { bottom: -480px !important; }
+.blip-hidden-chat.mobile-closed-fixed-window {
+  transform: translateY(calc(100% - 40px));
+  height: 100%;
+}
+
+.mobile-open-fixed-window #iframe-chat, .mobile-closed-fixed-window #iframe-chat{    
+  height: 100%;
+}
+
+.mobile-open-fixed-window .blip-footer, .mobile-closed-fixed-window .blip-footer {
+  display: none;
+}
+
+
+.blip-hidden-chat.fixed-window {
+  transform: translateY(480px);  
+}
+
 .blip-show-chat { bottom: 0; }
+
+.blip-minimize {
+  visibility: hidden; 
+  float: right; 
+  margin-right: 25px; 
+  width: 18px;
+}
