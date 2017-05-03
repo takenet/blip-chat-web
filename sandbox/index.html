@@ -39,6 +39,7 @@
               Title: <input type="text" id="title">
               <br> Icon Path: <input type="text" id="iconPath">
               <br> Widget Color: <input type="text" id="widgetColor">
+              <br> Hide Menu: <input type="radio" name="hideMenu" value="true">True <input type="radio" name="hideMenu" value="false">False
               <br>
             </form>
 
@@ -87,6 +88,7 @@
                                    },
                                    window: {
                                      target: 'sdk-target',
+                                     hideMenu: false,
                                      //  title: 'BLiP Chat Title Sample',
                                      //  iconPath: 'https://takenetomni.blob.core.windows.net/media-db/blip.png',
                                      // //  widgetColor: '#00FF00'
@@ -135,6 +137,7 @@
                                    options.window.title = document.getElementById('title').value;
                                    options.window.iconPath = document.getElementById('iconPath').value;
                                    options.window.widgetColor = document.getElementById('widgetColor').value;
+                                   options.window.hideMenu = !document.getElementsByName('hideMenu')[1].checked;
 
                                    buildSDK(options.config.authType);
 

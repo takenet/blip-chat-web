@@ -19,18 +19,19 @@ export default class Application {
       iconPath: Constants.SDK_DEFAULT_ICON_PATH,
       zIndex: Constants.SDK_DEFAULT_Z_INDEX,
       widgetColor: Constants.SDK_DEFAULT_WIDGET_COLOR,
+      hideMenu: true,
     }
     events = {
       onEnter: () => { },
       onLeave: () => { },
     }
 
-    this.options = {
+    Application.options = {
       config: config,
       window: window,
       events: events,
     }
-
+    
     Application.IFRAMEURL = Constants.IFRAMEURL_LOCAL;
 
     if (process.env.NODE_ENV === 'homolog') {
@@ -51,10 +52,10 @@ export default class Application {
   /* Init chat and set values and styles*/
   openBlipThread(opts) {
 
-    opts = _parseOldOptionsFormat(opts, this.options);
+    opts = _parseOldOptionsFormat(opts, Application.options);
 
-    let chatOpts = { ...this.options, ...opts };
-    this.options = chatOpts;
+    let chatOpts = { ...Application.options, ...opts };
+    Application.options = chatOpts;
 
     //Chat HTML element
     this.buildChat(chatOpts);
@@ -174,8 +175,8 @@ export default class Application {
   }
 
   destroy() {
-    if (this.options.window.target !== undefined) {
-      let element = document.getElementById(this.options.window.target);
+    if (Application.options.window.target !== undefined) {
+      let element = document.getElementById(Application.options.window.target);
       element.removeChild(this.chatEl);
     } else {
       let body = document.getElementsByTagName('body')[0];
@@ -269,13 +270,20 @@ function _receiveUserFromCommon(event) {
   if (event.data.code === Constants.COOKIE_DATA_CODE) {
     _setToLocalStorage(Constants.USER_ACCOUNT_KEY, event.data.userAccount);
   }
-  else if (event.data.code === Constants.REQUEST_COOKIE_CODE) {
+  else if (event.data.code === Constants.REQUEST_POST_MESSAGE_CODE) {
     var iframe = document.getElementById('iframe-chat');
     var account = _getFromLocalStorage(Constants.USER_ACCOUNT_KEY);
     var message =
       {
         code: Constants.COOKIE_DATA_CODE,
         userAccount: account,
+      };
+    iframe.contentWindow.postMessage(message, Application.IFRAMEURL);
+
+    message =
+      {
+        code: Constants.MENU_VISIBILITY_CODE,
+        hideMenu: Application.options.window.hideMenu,
       };
     iframe.contentWindow.postMessage(message, Application.IFRAMEURL);
   }
