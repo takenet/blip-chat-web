@@ -103,6 +103,7 @@ Options object contains three properties:
 | `iconPath` | Icon url for chat window |
 | `zIndex`  | Define zIndex value for chat window. (Default value: 16000001) |
 | `widgetColor`  | Define color value for chat widget. (Default value: '#546E7A') |
+| `hideMenu` | Define if contextual menu should be hidden |
 
 ### Events
 
@@ -122,7 +123,8 @@ var options =
     window: {
         title: 'Send a message',        
         widgetColor: '#546E7A',
-        iconPath: 'https://takenetomni.blob.core.windows.net/media-db/blip-app-white.png'
+        iconPath: 'https://takenetomni.blob.core.windows.net/media-db/blip-app-white.png',
+        hideMenu: false
     },
     events: {
         onEnter: function() {
@@ -149,7 +151,8 @@ var options =
     },
     window: {
         title: 'Send a message',
-        target: 'your-element-id'                              
+        target: 'your-element-id',
+        hideMenu: false
     },
     events: {
         onEnter: function() {
