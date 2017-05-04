@@ -1,6 +1,6 @@
 {
-  "name": "blip-sdk-web",
-  "description": "Blip SDK for web",
+  "name": "blip-chat-web",
+  "description": "BLiP Chat for web",
   "main": "sdk/dist/blipWebSdk.js",
   "authors": [
     "Take.net"
@@ -12,7 +12,7 @@
     "chat",
     "blip"
   ],
-  "homepage": "https://github.com/takenet/blip-sdk-web",
+  "homepage": "https://github.com/takenet/blip-chat-web",
   "ignore": [
     "**/.*",
     "node_modules",

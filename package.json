@@ -1,7 +1,7 @@
 {
-  "name": "blip-sdk-web",
+  "name": "blip-chat-web",
   "version": "0.1.14",
-  "description": "Blip SDK for web",
+  "description": "BLiP Chat for web",
   "main": "sdk/dist/blipWebSdk.js",
   "files": [
     "sdk/dist/blipWebSdk.js"
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/takenet/blip-sdk-web.git"
+    "url": "git+https://github.com/takenet/blip-chat-web.git"
   },
   "author": "Take.net",
   "license": "ISC",

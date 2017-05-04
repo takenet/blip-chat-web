@@ -11,7 +11,7 @@ Add the script element inside the **body** of your web page. Put your apikey as 
 That's all :)
 
 ```html
-<script src="https://unpkg.com/blip-sdk-web" type="text/javascript"></script>
+<script src="https://unpkg.com/blip-chat-web@0.1.15" type="text/javascript"></script>
 <script>
    (function () {
       window.onload = function () {
@@ -26,14 +26,14 @@ That's all :)
 Via npm
 --------
 
-If you are using ES6, simply install the `blip-sdk-web` package from the npm registry.
+If you are using ES6, simply install the `blip-chat-web` package from the npm registry.
 
-`npm install blip-sdk-web`
+`npm install blip-chat-web`
 
 ### Instantiate the BlipSdkWeb class
 
 ```javascript
-import * as BlipWebSDK from 'blip-sdk-web';
+import * as BlipWebSDK from 'blip-chat-web';
 
 new BlipWebSDK.ChatBuilder()
   .withApiKey('PUT-YOUR-API-KEY-HERE')
@@ -43,10 +43,10 @@ new BlipWebSDK.ChatBuilder()
 Via bower
 --------
 
-`bower install blip-sdk-web`
+`bower install blip-chat-web`
 
 ```html
-<script src="your-project/bower_components/blip-sdk-web/dist/blipWebSdk.js" type="text/javascript"></script>
+<script src="your-project/bower_components/blip-chat-web/dist/blipWebSdk.js" type="text/javascript"></script>
 <script>
   (function () {
     new BlipWebSDK.ChatBuilder()
@@ -67,7 +67,7 @@ A application that use dojo.js as your AMD
 
 ```html
 <script src="//ajax.googleapis.com/ajax/libs/dojo/1.12.1/dojo/dojo.js"></script>
-<script type="text/javascript" src="https://unpkg.com/blip-sdk-web"></script>
+<script type="text/javascript" src="https://unpkg.com/blip-chat-web@0.1.15"></script>
 
 <script>
     require(['BlipWebSDK'], function (sdk) {
@@ -92,7 +92,7 @@ Options object contains three properties:
 | `authType` | User authentication type (BlipWebSDK.AuthType) &#8727; |
 | `user` | User data with `id`, `password`, `name` and `email` properties |
 
-&#8727; Possible values for authType are: 'Guest', 'Login' and 'Dev'. You can access them using 'BlipWebSDK.AuthType' class. 'Guest' type will be used as default If you do not define 'authType'. To see more details about authentication types [click here](https://github.com/takenet/blip-sdk-web/wiki/Authentication-Types)
+&#8727; Possible values for authType are: 'Guest', 'Login' and 'Dev'. You can access them using 'BlipWebSDK.AuthType' class. 'Guest' type will be used as default If you do not define 'authType'. To see more details about authentication types [click here](https://github.com/takenet/blip-chat-web/wiki/Authentication-Types)
 
 ### Window
 
