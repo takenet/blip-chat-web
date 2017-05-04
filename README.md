@@ -1,8 +1,8 @@
 
-Blip SDK for Web
+Blip Chat for Web
 ======
 
-SDK to easily add BLiP conversations (chatbots) in your Web page. For more information see [BLiP portal][1] and [BLiP documentation][2]. See supported versions [here](#support).
+SDK to easily add BLiP Chat widget in your Web page. Put your chatbot in your web page. For more information see [BLiP portal][1] and [BLiP documentation][2]. See supported versions [here](#support).
 
 Installation
 --------
@@ -114,7 +114,7 @@ Options object contains three properties:
 Examples
 ---------
 
-### SDK as widget
+### BLiP Chat as a widget
 
 ```javascript
 var options = 
@@ -139,7 +139,7 @@ new BlipWebSDK.ChatBuilder()
   .build(options);
 ```
 
-### SDK as embedded element using 'Login' authentication type
+### BLiP Chat as embedded element using 'Login' authentication type
 
 ```javascript
 var options = 
@@ -170,7 +170,7 @@ new BlipWebSDK.ChatBuilder()
 
 ### Destroy chat widget
 
-To destroy BLiP widget you must use a **destroy** method on chat builder variable.
+To destroy BLiP Chat widget you must use a **destroy** method on chat builder variable.
 
 ### Example
 
