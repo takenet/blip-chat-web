@@ -9,6 +9,7 @@ export default class Constants {
     static get SDK_DEFAULT_ICON_PATH() { return 'https://takenetomni.blob.core.windows.net/media-db/blip-app-white.png'; }
     static get SDK_DEFAULT_WIDGET_COLOR() { return '#546E7A'; }
     static get SDK_DEFAULT_Z_INDEX() { return 16000001; }
+    static get SDK_DEFAULT_HIDE_MENU() { return false; }
     static get REQUEST_POST_MESSAGE_CODE() { return 'RequestPostMessage'; }
     static get COOKIES_EXPIRATION() { return 365; }
     static get MENU_VISIBILITY_CODE() { return 'BlipSdkMenuVisibility' }

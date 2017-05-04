@@ -19,7 +19,7 @@ export default class Application {
       iconPath: Constants.SDK_DEFAULT_ICON_PATH,
       zIndex: Constants.SDK_DEFAULT_Z_INDEX,
       widgetColor: Constants.SDK_DEFAULT_WIDGET_COLOR,
-      hideMenu: true,
+      hideMenu: Constants.SDK_DEFAULT_HIDE_MENU,
     }
     events = {
       onEnter: () => { },
@@ -31,7 +31,7 @@ export default class Application {
       window: window,
       events: events,
     }
-    
+
     Application.IFRAMEURL = Constants.IFRAMEURL_LOCAL;
 
     if (process.env.NODE_ENV === 'homolog') {
@@ -207,6 +207,7 @@ export default class Application {
   }
 
   _setWidgetColor(color) {
+    let widgetColor = color || Constants.SDK_DEFAULT_WIDGET_COLOR;
     this.chatEl.style.backgroundColor = color;
   }
 
@@ -283,7 +284,7 @@ function _receiveUserFromCommon(event) {
     message =
       {
         code: Constants.MENU_VISIBILITY_CODE,
-        hideMenu: Application.options.window.hideMenu,
+        hideMenu: Application.options.window.hideMenu || Constants.SDK_DEFAULT_HIDE_MENU,
       };
     iframe.contentWindow.postMessage(message, Application.IFRAMEURL);
   }
