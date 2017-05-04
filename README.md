@@ -2,7 +2,7 @@
 Blip Chat for Web
 ======
 
-SDK to easily add BLiP Chat widget in your Web page. Put your chatbot in your web page. For more information see [BLiP portal][1] and [BLiP documentation][2]. See supported versions [here](#support).
+SDK to easily add BLiP Chat widget in your Web page. Put your chatbot in your web page. For more information see [BLiP portal][1] and [BLiP documentation][2]. See supported browser versions [here](#support).
 
 Installation
 --------
