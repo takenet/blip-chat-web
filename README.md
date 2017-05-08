@@ -7,7 +7,7 @@ SDK to easily add BLiP Chat widget in your Web page. Put your chatbot in your we
 Installation
 --------
 
-Add the script element inside the **body** of your web page. Put your apikey as asked. *To get your apikey go to [BLiP portal][3]. On the left menu access Publications -> Blip Chat.* 
+Add the script element inside the **body** of your web page. Put your apikey as asked. To get your apikey go to [BLiP portal][3]. On the left menu access *Publications -> Blip Chat*. You will also need to add domains from the websites where Blip Chat is inclued, in order to enabled them in your chatbot. 
 That's all :)
 
 ```html
