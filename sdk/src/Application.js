@@ -95,16 +95,17 @@ export default class Application {
       this.chatEl.innerHTML += ChatFooterTemplate;
       this.chatEl.appendChild(this.chatIframe);
 
-      this.chatEl.className = 'blip-hidden-chat';
-      this.chatEl.className += ' fixed-window';
+      this.chatEl.setAttribute('class', 'blip-hidden-chat');
 
       let isMobile = _isMobile(navigator.userAgent || navigator.vendor || window.opera);
 
       if (isMobile) {
         this.chatIframe.width = window.innerWidth;
         this.chatIframe.height = window.innerHeight - 60;
-        this.chatEl.setAttribute('class', 'blip-hidden-chat mobile-closed-fixed-window');
+        this.chatEl.classList.add('mobile-fixed-window');
+        this.chatEl.classList.add('mobile-closed');
       } else {
+        this.chatEl.classList.add('fixed-window');
         this.chatIframe.width = 300;
         this.chatIframe.height = 460;
       }
@@ -119,8 +120,11 @@ export default class Application {
       closeBtn.addEventListener('click', () => {
         if (this.chatEl.getAttribute('class').indexOf('blip-hidden-chat') == ! -1) {
 
+          this.chatEl.setAttribute('class', 'blip-show-chat');
+
           if (isMobile) {
-            this.chatEl.setAttribute('class', 'blip-show-chat mobile-open-fixed-window');
+            this.chatEl.classList.add('mobile-fixed-window');
+            this.chatEl.classList.add('mobile-open');
             document.getElementsByClassName('blip-minimize')[0].style.visibility = "visible";
             let html = document.getElementsByTagName('html')[0];
             let body = document.getElementsByTagName('body')[0];
@@ -130,7 +134,7 @@ export default class Application {
               this.chatEl.style.position = 'absolute';
             }
           } else {
-            this.chatEl.setAttribute('class', 'blip-show-chat fixed-window');
+            this.chatEl.classList.add('fixed-window');
           }
 
           //Enter chat callback
@@ -140,8 +144,11 @@ export default class Application {
         }
         else {
 
+          this.chatEl.setAttribute('class', 'blip-hidden-chat');
+
           if (isMobile) {
-            this.chatEl.setAttribute('class', 'blip-hidden-chat mobile-closed-fixed-window');
+            this.chatEl.classList.add('mobile-fixed-window');
+            this.chatEl.classList.add('mobile-closed');
             document.getElementsByClassName('blip-minimize')[0].style.visibility = "hidden";
             let html = document.getElementsByTagName('html')[0];
             let body = document.getElementsByTagName('body')[0];
@@ -151,7 +158,7 @@ export default class Application {
               this.chatEl.style.position = 'fixed';
             }
           } else {
-            this.chatEl.setAttribute('class', 'blip-hidden-chat fixed-window');
+            this.chatEl.classList.add('fixed-window');
           }
 
           //Leave chat callback
@@ -163,10 +170,10 @@ export default class Application {
 
     } else {
 
-      this.chatEl.className = 'target-window';
+      this.chatEl.setAttribute('class', 'target-window');
       this.chatEl.appendChild(this.chatIframe);
 
-      this.chatIframe.className += ' target-window';
+      this.chatIframe.classList.add('target-window');
       let chatTarget = document.getElementById(opts.window.target);
 
       chatTarget.appendChild(this.chatEl);
@@ -249,7 +256,7 @@ function _parseOldOptionsFormat(opts, defaultOpts) {
 }
 
 function _getFromLocalStorage(name) {
-  if (supportsLocalStorage()) {
+  if (_supportsLocalStorage()) {
     return localStorage.getItem(name);
   } else {
     return null;
@@ -257,7 +264,7 @@ function _getFromLocalStorage(name) {
 }
 
 function _setToLocalStorage(name, value) {
-  if (supportsLocalStorage()) {
+  if (_supportsLocalStorage()) {
     localStorage.setItem(name, value);
   }
 }
@@ -291,7 +298,7 @@ function _receiveUserFromCommon(event) {
 }
 
 
-function supportsLocalStorage() {
+function _supportsLocalStorage() {
   try {
     return 'localStorage' in window && window['localStorage'] !== null;
   } catch (e) {
