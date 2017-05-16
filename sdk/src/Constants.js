@@ -13,4 +13,5 @@ export default class Constants {
     static get REQUEST_POST_MESSAGE_CODE() { return 'RequestCookie'; }
     static get COOKIES_EXPIRATION() { return 365; }
     static get MENU_VISIBILITY_CODE() { return 'BlipSdkMenuVisibility' }
+    static get ACTION_SHOW_IMAGE_CODE() { return 'BlipSdkActionShowImage' }
 }

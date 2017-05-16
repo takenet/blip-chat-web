@@ -1,6 +1,8 @@
-import Style from './style.css';
-import ChatHeaderTemplate from './chat-header.html';
-import ChatFooterTemplate from './chat-footer.html';
+import Style from './css/style.css';
+import ModalStyle from './css/modal.css';
+import ChatHeaderTemplate from './views/chat-header.html';
+import ChatFooterTemplate from './views/chat-footer.html';
+import ModalTemplate from './views/modal.html';
 import Constants from './Constants';
 import AuthType from './AuthType';
 import ApplicationStorage from './ApplicationStorage';
@@ -51,6 +53,15 @@ export default class Application {
         //Div ID
         chatEl.id = 'take-chat';
         this.chatEl = chatEl;
+        //Add modalView
+        let body = document.getElementsByTagName('body')[0];
+        body.innerHTML += ModalTemplate;        
+        document.getElementById("blip-modal").addEventListener('click', () => {
+            document.getElementById("blip-modal").classList.remove('isVisible');
+        });
+        document.getElementById("modal-image").addEventListener('click', (event) => {
+            event.stopPropagation();
+        });
     }
 
     /* Init chat and set values and styles*/
@@ -91,7 +102,7 @@ export default class Application {
         var self = this;
 
         window.addEventListener('message', (event) => {
-            this._receiveUserFromCommon(event);
+            this._onReceivePostMessage(event);
         });
 
         let widgetMode = opts.window.target === undefined;
@@ -229,31 +240,38 @@ export default class Application {
         document.getElementById('iframe-chat').contentWindow.postMessage(message, this.IFRAMEURL);
     }
 
-    _receiveUserFromCommon(event) {
+    _onReceivePostMessage(event) {
         var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
         if (this.IFRAMEURL.indexOf(origin) === -1) {
             return;
         }
+        switch (event.data.code) {
+            case Constants.COOKIE_DATA_CODE:
+                this.ApplicationStorage._setToLocalStorage(Constants.USER_ACCOUNT_KEY, event.data.userAccount);
+                break;
 
-        if (event.data.code === Constants.COOKIE_DATA_CODE) {
-            this.ApplicationStorage._setToLocalStorage(Constants.USER_ACCOUNT_KEY, event.data.userAccount);
-        }
-        else if (event.data.code === Constants.REQUEST_POST_MESSAGE_CODE) {
-            var iframe = document.getElementById('iframe-chat');
-            var account = this.ApplicationStorage._getFromLocalStorage(Constants.USER_ACCOUNT_KEY);
-            var message =
-            {
-                code: Constants.COOKIE_DATA_CODE,
-                userAccount: account,
-            };
-            iframe.contentWindow.postMessage(message, this.IFRAMEURL);
+            case Constants.REQUEST_POST_MESSAGE_CODE:
+                var iframe = document.getElementById('iframe-chat');
+                var account = this.ApplicationStorage._getFromLocalStorage(Constants.USER_ACCOUNT_KEY);
+                var message =
+                    {
+                        code: Constants.COOKIE_DATA_CODE,
+                        userAccount: account,
+                    };
+                iframe.contentWindow.postMessage(message, this.IFRAMEURL);
 
-            message =
-            {
-                code: Constants.MENU_VISIBILITY_CODE,
-                hideMenu: this.options.window.hideMenu || Constants.SDK_DEFAULT_HIDE_MENU,
-            };
-            iframe.contentWindow.postMessage(message, this.IFRAMEURL);
+                message =
+                    {
+                        code: Constants.MENU_VISIBILITY_CODE,
+                        hideMenu: this.options.window.hideMenu || Constants.SDK_DEFAULT_HIDE_MENU,
+                    };
+                iframe.contentWindow.postMessage(message, this.IFRAMEURL);
+                break;
+
+            case Constants.ACTION_SHOW_IMAGE_CODE:
+                document.getElementById("modal-image").src = event.data.imageSrc;
+                document.getElementById("blip-modal").classList.add('isVisible');
+                break;
         }
     }
 
