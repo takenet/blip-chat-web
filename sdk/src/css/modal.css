@@ -1,4 +1,5 @@
 #close-modal {
+  display: flex;
   background:#000000;
   opacity:0.3;
   position:absolute;
