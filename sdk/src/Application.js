@@ -58,6 +58,7 @@ export default class Application {
         body.innerHTML += ModalTemplate;        
         document.getElementById("blip-modal").addEventListener('click', () => {
             document.getElementById("blip-modal").classList.remove('isVisible');
+            document.getElementById("modal-image").src = "#";
         });
         document.getElementById("modal-image").addEventListener('click', (event) => {
             event.stopPropagation();
