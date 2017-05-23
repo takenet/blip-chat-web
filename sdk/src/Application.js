@@ -12,6 +12,8 @@ export default class Application {
     constructor() {
         this.ApplicationStorage = new ApplicationStorage();
         this.ScreenUtils = new ScreenUtils();
+        this.widgetMode = false;
+        this.connectionStarted = false;
 
         //Default options
         let config, window, events;
@@ -55,7 +57,7 @@ export default class Application {
         this.chatEl = chatEl;
         //Add modalView
         let body = document.getElementsByTagName('body')[0];
-        body.innerHTML += ModalTemplate;        
+        body.innerHTML += ModalTemplate;
         document.getElementById("blip-modal").addEventListener('click', () => {
             document.getElementById("blip-modal").classList.remove('isVisible');
             document.getElementById("modal-image").src = "#";
@@ -106,9 +108,9 @@ export default class Application {
             this._onReceivePostMessage(event);
         });
 
-        let widgetMode = opts.window.target === undefined;
+        this.widgetMode = opts.window.target === undefined;
 
-        if (widgetMode) {
+        if (this.widgetMode) {
             this.chatEl.innerHTML = ChatHeaderTemplate;
             this.chatEl.innerHTML += ChatFooterTemplate;
             this.chatEl.appendChild(this.chatIframe);
@@ -137,6 +139,11 @@ export default class Application {
             let closeBtn = document.getElementById('blip-close-btn');
             closeBtn.addEventListener('click', () => {
                 if (this.chatEl.getAttribute('class').indexOf('blip-hidden-chat') == ! -1) {
+
+                    //Connect user after opening blip chat widget
+                    if (!this.connectionStarted) {
+                        this._startConnection();
+                    }
 
                     this.chatEl.setAttribute('class', 'blip-show-chat');
 
@@ -247,26 +254,23 @@ export default class Application {
             return;
         }
         switch (event.data.code) {
-            case Constants.COOKIE_DATA_CODE:
-                this.ApplicationStorage._setToLocalStorage(Constants.USER_ACCOUNT_KEY, event.data.userAccount);
-                break;
-
             case Constants.REQUEST_POST_MESSAGE_CODE:
                 var iframe = document.getElementById('iframe-chat');
-                var account = this.ApplicationStorage._getFromLocalStorage(Constants.USER_ACCOUNT_KEY);
                 var message =
-                    {
-                        code: Constants.COOKIE_DATA_CODE,
-                        userAccount: account,
-                    };
-                iframe.contentWindow.postMessage(message, this.IFRAMEURL);
-
-                message =
                     {
                         code: Constants.MENU_VISIBILITY_CODE,
                         hideMenu: this.options.window.hideMenu || Constants.SDK_DEFAULT_HIDE_MENU,
                     };
                 iframe.contentWindow.postMessage(message, this.IFRAMEURL);
+
+                if (!this.widgetMode) {
+                    this._startConnection();
+                }
+
+                break;
+
+            case Constants.COOKIE_DATA_CODE:
+                this.ApplicationStorage._setToLocalStorage(Constants.USER_ACCOUNT_KEY, event.data.userAccount);
                 break;
 
             case Constants.ACTION_SHOW_IMAGE_CODE:
@@ -274,6 +278,19 @@ export default class Application {
                 document.getElementById("blip-modal").classList.add('isVisible');
                 break;
         }
+    }
+
+    _startConnection() {
+        let iframe = document.getElementById('iframe-chat');
+        let account = this.ApplicationStorage._getFromLocalStorage(Constants.USER_ACCOUNT_KEY);
+        let message =
+            {
+                code: Constants.START_CONNECTION_CODE,
+                userAccount: account,
+            };
+        iframe.contentWindow.postMessage(message, this.IFRAMEURL);
+
+        this.connectionStarted = true;
     }
 
     _parseOldOptionsFormat(opts, defaultOpts) {
