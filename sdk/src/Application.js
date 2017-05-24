@@ -263,7 +263,10 @@ export default class Application {
                     };
                 iframe.contentWindow.postMessage(message, this.IFRAMEURL);
 
-                if (!this.widgetMode) {
+                if (this.widgetMode) { // Show widget after sdk common is ready
+                    document.getElementById('take-chat').style.visibility = 'visible';
+                    document.getElementById('take-chat').style.opacity = 1;
+                } else {
                     this._startConnection();
                 }
 

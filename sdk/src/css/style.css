@@ -4,6 +4,9 @@
   overflow: hidden;  
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   line-height: 1.42857143;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.4s linear;
 }
 
 #take-chat iframe { 
