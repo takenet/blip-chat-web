@@ -43,10 +43,9 @@
   bottom: 0;
   right: 30px;
   width: 300px;
-  transition: 700ms;
   visibility: hidden;
   opacity: 0;
-  transition: opacity 0.4s linear;
+  transition: opacity 0.4s linear, all 700ms;
 }
 
 .mobile-fixed-window {
@@ -55,10 +54,9 @@
   position: fixed;
   bottom: 0;
   right: 0px;  
-  transition: 700ms;
   visibility: hidden;
   opacity: 0;
-  transition: opacity 0.4s linear;
+  transition: opacity 0.4s linear, all 700ms;
 }
 
 .mobile-closed {
