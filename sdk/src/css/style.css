@@ -56,6 +56,9 @@
   bottom: 0;
   right: 0px;  
   transition: 700ms;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.4s linear;
 }
 
 .mobile-closed {
