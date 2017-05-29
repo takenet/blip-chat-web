@@ -57,8 +57,8 @@
                         <form>
                             Full Name: <input type="text" id="fullName">
                             <br> Email: <input type="text" id="email">
-                            <br> Id: <input type="text" id="userId" value="391f4be0-ae0a-43fa-919a-a729df697a42" disabled="disabled">
-                            <br> Password: <input type="text" id="userPass" value="2569cf92-bdcf-4684-9cd9-1d1641bf10e5" disabled="disabled">
+                            <br> Id: <input type="text" id="userId" value="">
+                            <br> Password: <input type="text" id="userPass" value="">
                             <br>
                         </form>
                     </div>
@@ -80,7 +80,6 @@
     (function () {
         window.onload = function () {
 
-            var apiKey = 'YOUR-APIKEY';
 
             var options = {
                 config: {
@@ -111,8 +110,8 @@
                 options.window.target = currentTemplate;
                 options.config.authType = authType;
                 options.config.user = {
-                    id: document.getElementById('userId').value, // Required
-                    password: document.getElementById('userPass').value, // Required
+                    id: document.getElementById('userId').value ? document.getElementById('userId').value : '391f4be0-ae0a-43fa-919a-a729df697a42', // Required
+                    password: document.getElementById('userPass').value ? document.getElementById('userPass').value : '2569cf92-bdcf-4684-9cd9-1d1641bf10e5', // Required
                     name: document.getElementById('fullName').value ? document.getElementById('fullName').value : '', // Optional
                     email: document.getElementById('email').value ? document.getElementById('email').value : ''// Optional
                 };
