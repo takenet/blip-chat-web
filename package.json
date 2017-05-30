@@ -1,6 +1,6 @@
 {
   "name": "blip-chat-web",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "BLiP Chat for web",
   "main": "sdk/dist/blipWebSdk.js",
   "files": [
