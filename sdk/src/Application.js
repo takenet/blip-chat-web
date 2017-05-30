@@ -155,6 +155,7 @@ export default class Application {
                         let body = document.getElementsByTagName('body')[0];
                         html.style.overflow = body.style.overflow = 'hidden';
                         html.style.height = body.style.height = '0';
+                        html.style.position = body.style.position = 'static';
                         if (this.ScreenUtils._isIOS()) {
                             this.chatEl.style.position = 'absolute';
                         }
@@ -179,6 +180,7 @@ export default class Application {
                         let body = document.getElementsByTagName('body')[0];
                         html.style.overflow = body.style.overflow = '';
                         html.style.height = body.style.height = '';
+                        html.style.position = body.style.position = '';
                         if (this.ScreenUtils._isIOS()) {
                             this.chatEl.style.position = 'fixed';
                         }
