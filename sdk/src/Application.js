@@ -58,8 +58,8 @@ export default class Application {
         //Add modalView
         let body = document.getElementsByTagName('body')[0];
         body.innerHTML += ModalTemplate;
-        document.getElementById("blip-modal").addEventListener('click', () => {
-            document.getElementById("blip-modal").classList.remove('isVisible');
+        document.getElementById("blip-chat-modal").addEventListener('click', () => {
+            document.getElementById("blip-chat-modal").classList.remove('isVisible');
             document.getElementById("modal-image").src = "#";
         });
         document.getElementById("modal-image").addEventListener('click', (event) => {
@@ -280,7 +280,7 @@ export default class Application {
 
             case Constants.ACTION_SHOW_IMAGE_CODE:
                 document.getElementById("modal-image").src = event.data.imageSrc;
-                document.getElementById("blip-modal").classList.add('isVisible');
+                document.getElementById("blip-chat-modal").classList.add('isVisible');
                 break;
         }
     }

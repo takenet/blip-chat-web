@@ -1,9 +1,9 @@
-#modal-image {
+#blip-chat-modal #modal-image {
   max-height: 90vh;
   max-width: 90vw;
 }
 
-#close-modal {
+#blip-chat-modal #close-modal {
   position:absolute;
   top: 0px;
   right: 0px;
@@ -11,7 +11,7 @@
   background:rgba(0, 0, 0, 0.3);
 }
 
-.modal {
+#blip-chat-modal.modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -33,7 +33,7 @@
   background: rgba(33, 33, 33, 0.8);
   z-index: 2147483648;
 }
-.modal-box {
+#blip-chat-modal .modal-box {
   position: relative;
   overflow: initial;
   display: grid;
@@ -46,7 +46,7 @@
   transform: translate(0, 0) scale(1);
 }
 
-.isVisible {
+#blip-chat-modal.isVisible {
   opacity: 1;
   visibility: visible;
 }
