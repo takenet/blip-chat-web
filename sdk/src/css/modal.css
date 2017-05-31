@@ -1,6 +1,6 @@
 #blip-chat-modal #modal-image {
-  max-height: 90vh;
-  max-width: 90vw;
+  max-height: 80vh;
+  max-width: 80vw;
 }
 
 #blip-chat-modal #close-modal {
@@ -49,4 +49,8 @@
 #blip-chat-modal.isVisible {
   opacity: 1;
   visibility: visible;
+}
+
+#blip-chat-modal #modal-image{
+    display: block;
 }
