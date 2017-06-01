@@ -39,7 +39,7 @@ module.exports = function makeWebpackConfig(opt) {
         module: {
             loaders: [
                 { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
-                { test: /\.css$/, loader: 'style-loader!css-loader', exclude: /node_modules/ },
+                { test: /\.scss$/, loader: 'style-loader!css-loader!sass-loader', exclude: /node_modules/ },
                 { test: /\.html$/, loader: 'html', query: { minimize: true } }
             ]
         },

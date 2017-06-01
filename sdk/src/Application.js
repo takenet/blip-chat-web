@@ -1,5 +1,5 @@
-import Style from './css/style.css';
-import ModalStyle from './css/modal.css';
+import Style from './styles/main.scss';
+import ModalStyle from './styles/modal.scss';
 import ChatHeaderTemplate from './views/chat-header.html';
 import ChatFooterTemplate from './views/chat-footer.html';
 import ModalTemplate from './views/modal.html';
@@ -200,7 +200,7 @@ export default class Application {
             this.chatEl.setAttribute('class', 'target-window');
             this.chatEl.appendChild(this.chatIframe);
 
-            this.chatIframe.classList.add('target-window');
+            this.chatIframe.classList.add('target-window-iframe');
             let chatTarget = document.getElementById(opts.window.target);
 
             chatTarget.appendChild(this.chatEl);
