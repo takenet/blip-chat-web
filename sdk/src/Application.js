@@ -247,7 +247,7 @@ export default class Application {
 
     _sendMessage(message) {
         var postMessage = { code: Constants.SEND_MESSAGE_CODE, content: message }
-        document.getElementById('iframe-chat').contentWindow.postMessage(message, this.IFRAMEURL);
+        document.getElementById('iframe-chat').contentWindow.postMessage(postMessage, this.IFRAMEURL);
     }
 
     _onReceivePostMessage(event) {
