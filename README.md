@@ -11,7 +11,7 @@ Add the script element inside the **body** of your web page. Put your apikey as 
 That's all :)
 
 ```html
-<script src="https://unpkg.com/blip-chat-web@0.1.21" type="text/javascript"></script>
+<script src="https://unpkg.com/blip-chat-web@0.1.22" type="text/javascript"></script>
 <script>
    (function () {
       window.onload = function () {
@@ -67,7 +67,7 @@ A application that use dojo.js as your AMD
 
 ```html
 <script src="//ajax.googleapis.com/ajax/libs/dojo/1.12.1/dojo/dojo.js"></script>
-<script type="text/javascript" src="https://unpkg.com/blip-chat-web@0.1.21"></script>
+<script type="text/javascript" src="https://unpkg.com/blip-chat-web@0.1.22"></script>
 
 <script>
     require(['BlipWebSDK'], function (sdk) {
