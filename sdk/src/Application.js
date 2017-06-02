@@ -57,7 +57,7 @@ export default class Application {
         this.chatEl = chatEl;
         //Add modalView
         let body = document.getElementsByTagName('body')[0];
-        body.innerHTML += ModalTemplate;
+        body.insertAdjacentHTML('afterbegin', ModalTemplate);
         document.getElementById("blip-chat-modal").addEventListener('click', () => {
             document.getElementById("blip-chat-modal").classList.remove('isVisible');
             document.getElementById("modal-image").src = "#";
