@@ -7,11 +7,13 @@ import Constants from './Constants';
 import AuthType from './AuthType';
 import ApplicationStorage from './ApplicationStorage';
 import ScreenUtils from './ScreenUtils';
+import {NotificationService} from './NotificationService';
 
 export default class Application {
     constructor() {
         this.ApplicationStorage = new ApplicationStorage();
         this.ScreenUtils = new ScreenUtils();
+        this.NotificationService = new NotificationService();
         this.widgetMode = false;
         this.connectionStarted = false;
 
@@ -107,7 +109,7 @@ export default class Application {
         window.addEventListener('message', (event) => {
             this._onReceivePostMessage(event);
         });
-
+       
         this.widgetMode = opts.window.target === undefined;
 
         if (this.widgetMode) {
@@ -250,6 +252,7 @@ export default class Application {
         document.getElementById('iframe-chat').contentWindow.postMessage(postMessage, this.IFRAMEURL);
     }
 
+   
     _onReceivePostMessage(event) {
         var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
         if (this.IFRAMEURL.indexOf(origin) === -1) {
@@ -281,6 +284,12 @@ export default class Application {
             case Constants.ACTION_SHOW_IMAGE_CODE:
                 document.getElementById("modal-image").src = event.data.imageSrc;
                 document.getElementById("blip-chat-modal").classList.add('isVisible');
+                break;
+            case Constants.ACTION_NOTIFY_MESSAGE_CODE:
+
+                setTimeout( () => {
+                    this.NotificationService._notifyReceivedMessage(event.data.botName);
+                }, 1000);
                 break;
         }
     }

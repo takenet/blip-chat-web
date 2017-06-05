@@ -15,4 +15,5 @@ export default class Constants {
     static get COOKIE_DATA_CODE() { return 'BlipSdkCookieData'; }
     static get MENU_VISIBILITY_CODE() { return 'BlipSdkMenuVisibility'; }
     static get ACTION_SHOW_IMAGE_CODE() { return 'BlipSdkActionShowImage'; }
+    static get ACTION_NOTIFY_MESSAGE_CODE() { return 'BlipSdkActionNotifyReceivedMessage'; }
 }
