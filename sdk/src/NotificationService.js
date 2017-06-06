@@ -19,10 +19,11 @@ export class NotificationService {
         }
     }
 
-    _notifyReceivedMessage(botName) {
+    _notifyReceivedMessage(botName, unreadMessagesCount) {
         this.botName = botName;
         if (window.document.hidden) {
-            let notificationTitle = botName + " diz...";
+            var unreadMsgNot = unreadMessagesCount > 0 ? "(" + unreadMessagesCount + ") " : "";
+            let notificationTitle = unreadMsgNot + botName + " diz...";
             this._showNotification(notificationTitle);
             this.notificationTimer = setInterval( () => this._showNotification(notificationTitle), 3000);
         }

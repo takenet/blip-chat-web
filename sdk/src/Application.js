@@ -7,7 +7,7 @@ import Constants from './Constants';
 import AuthType from './AuthType';
 import ApplicationStorage from './ApplicationStorage';
 import ScreenUtils from './ScreenUtils';
-import {NotificationService} from './NotificationService';
+import { NotificationService } from './NotificationService';
 
 export default class Application {
     constructor() {
@@ -23,6 +23,7 @@ export default class Application {
         config = {
             authType: AuthType.GUEST,
             user: {},
+            showNotification: Constants.SDK_DEFAULT_SHOW_NOTIFICATION,
         }
         window = {
             target: undefined,
@@ -109,7 +110,7 @@ export default class Application {
         window.addEventListener('message', (event) => {
             this._onReceivePostMessage(event);
         });
-       
+
         this.widgetMode = opts.window.target === undefined;
 
         if (this.widgetMode) {
@@ -252,21 +253,27 @@ export default class Application {
         document.getElementById('iframe-chat').contentWindow.postMessage(postMessage, this.IFRAMEURL);
     }
 
-   
+
     _onReceivePostMessage(event) {
-        var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
+        const origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
         if (this.IFRAMEURL.indexOf(origin) === -1) {
             return;
         }
         switch (event.data.code) {
             case Constants.REQUEST_POST_MESSAGE_CODE:
-                var iframe = document.getElementById('iframe-chat');
-                var message =
+                let iframe = document.getElementById('iframe-chat');
+                let message =
                     {
                         code: Constants.MENU_VISIBILITY_CODE,
-                        hideMenu: this.options.window.hideMenu || Constants.SDK_DEFAULT_HIDE_MENU,
+                        hideMenu: this.options.window.hideMenu === undefined ?  Constants.SDK_DEFAULT_HIDE_MENU : this.options.window.hideMenu,
                     };
-                iframe.contentWindow.postMessage(message, this.IFRAMEURL);
+                iframe.contentWindow.postMessage(message, this.IFRAMEURL); //send hideMenu option to common
+
+                message = {
+                    code: Constants.SHOW_NOTIFICATION_CODE,
+                    showNotification: this.options.config.showNotification === undefined ? Constants.SDK_DEFAULT_SHOW_NOTIFICATION : this.options.config.showNotification,
+                };
+                iframe.contentWindow.postMessage(message, this.IFRAMEURL); //send showNotification option to common
 
                 if (this.widgetMode) { // Show widget after sdk common is ready
                     document.getElementById('take-chat').style.visibility = 'visible';
@@ -286,10 +293,7 @@ export default class Application {
                 document.getElementById("blip-chat-modal").classList.add('isVisible');
                 break;
             case Constants.ACTION_NOTIFY_MESSAGE_CODE:
-
-                setTimeout( () => {
-                    this.NotificationService._notifyReceivedMessage(event.data.botName);
-                }, 1000);
+                this.NotificationService._notifyReceivedMessage(event.data.botName, event.data.unreadMessagesCount);
                 break;
         }
     }

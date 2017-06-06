@@ -8,12 +8,14 @@ export default class Constants {
     static get SDK_DEFAULT_WIDGET_COLOR() { return '#546E7A'; }
     static get SDK_DEFAULT_Z_INDEX() { return 16000001; }
     static get SDK_DEFAULT_HIDE_MENU() { return false; }
+    static get SDK_DEFAULT_SHOW_NOTIFICATION() { return true; }
     static get COOKIES_EXPIRATION() { return 365; }
     static get SEND_MESSAGE_CODE() { return 'SendMessage'; }
     static get REQUEST_POST_MESSAGE_CODE() { return 'RequestCookie'; }
     static get START_CONNECTION_CODE() { return 'BlipSdkStartConnection'; }
     static get COOKIE_DATA_CODE() { return 'BlipSdkCookieData'; }
     static get MENU_VISIBILITY_CODE() { return 'BlipSdkMenuVisibility'; }
+    static get SHOW_NOTIFICATION_CODE() { return 'BlipSdkShowNotification'; }
     static get ACTION_SHOW_IMAGE_CODE() { return 'BlipSdkActionShowImage'; }
     static get ACTION_NOTIFY_MESSAGE_CODE() { return 'BlipSdkActionNotifyReceivedMessage'; }
 }
