@@ -5,7 +5,7 @@ export class NotificationService {
         this.pageTitle = window.document.title;
         this.botName;
         this.notificationTimer;
-        window.document.addEventListener('visibilitychange', this._onVisibilityChange);
+        window.document.addEventListener('visibilitychange', () => { this._onVisibilityChange(); });
     }
 
     _onVisibilityChange() {
