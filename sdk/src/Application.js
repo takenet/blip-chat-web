@@ -140,6 +140,13 @@ export default class Application {
             body.appendChild(this.chatEl);
 
             let closeBtn = document.getElementById('blip-close-btn');
+
+            window.addEventListener('orientationchange', () => { //close blip chat on iOS when orientation change due to iOS bug
+                if (this.ScreenUtils._isIOS() && this.chatEl.getAttribute('class').indexOf('blip-show-chat') == ! -1) {
+                    closeBtn.click();
+                }
+            });
+
             closeBtn.addEventListener('click', () => {
                 if (this.chatEl.getAttribute('class').indexOf('blip-hidden-chat') == ! -1) {
 
@@ -265,7 +272,7 @@ export default class Application {
                 let message =
                     {
                         code: Constants.MENU_VISIBILITY_CODE,
-                        hideMenu: this.options.window.hideMenu === undefined ?  Constants.SDK_DEFAULT_HIDE_MENU : this.options.window.hideMenu,
+                        hideMenu: this.options.window.hideMenu === undefined ? Constants.SDK_DEFAULT_HIDE_MENU : this.options.window.hideMenu,
                     };
                 iframe.contentWindow.postMessage(message, this.IFRAMEURL); //send hideMenu option to common
 
