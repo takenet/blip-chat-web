@@ -91,8 +91,11 @@ Options object contains three properties:
 | --- | --- |
 | `authType` | User authentication type (BlipWebSDK.AuthType) &#8727; |
 | `user` | User data with `id`, `password`, `name` and `email` properties |
+| `showNotification` | Enable notification for new messages when tab is not active ** |
 
 &#8727; Possible values for authType are: 'Guest', 'Login' and 'Dev'. You can access them using 'BlipWebSDK.AuthType' class. 'Guest' type will be used as default If you do not define 'authType'. To see more details about authentication types [click here](https://github.com/takenet/blip-chat-web/wiki/Authentication-Types)
+
+&#8727;&#8727; The notifications are active by default. 
 
 ### Window
 
@@ -141,13 +144,14 @@ new BlipWebSDK.ChatBuilder()
   .build(options);
 ```
 
-### BLiP Chat as embedded element using 'Login' authentication type
+### BLiP Chat as embedded element using 'Login' authentication type and disabling notifications: 
 
 ```javascript
 var options = 
 {
     config: {
-        authType: BlipWebSDK.AuthType.LOGIN
+        authType: BlipWebSDK.AuthType.LOGIN,
+        showNotification: false
     },
     window: {
         title: 'Send a message',
