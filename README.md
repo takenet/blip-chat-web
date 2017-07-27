@@ -198,8 +198,8 @@ var options =
 };
 
 var chatBuilder = new BlipWebSDK.ChatBuilder()
-  .withApiKey('PUT-YOUR-API-KEY-HERE')
-  .build(options);
+  .withApiKey('PUT-YOUR-API-KEY-HERE');
+chatBuilder.build(options);
   
 //To destroy widget use:
 chatBuilder.destroy();
