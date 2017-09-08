@@ -302,6 +302,9 @@ export default class Application {
             case Constants.ACTION_NOTIFY_MESSAGE_CODE:
                 this.NotificationService._notifyReceivedMessage(event.data.botName, event.data.unreadMessagesCount);
                 break;
+            case Constants.REQUEST_HIDE_BLIP_AD:
+                document.getElementById("blip-footer").style.display = "none";
+                break;
         }
     }
 

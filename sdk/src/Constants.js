@@ -18,4 +18,5 @@ export default class Constants {
     static get SHOW_NOTIFICATION_CODE() { return 'BlipSdkShowNotification'; }
     static get ACTION_SHOW_IMAGE_CODE() { return 'BlipSdkActionShowImage'; }
     static get ACTION_NOTIFY_MESSAGE_CODE() { return 'BlipSdkActionNotifyReceivedMessage'; }
+    static get REQUEST_HIDE_BLIP_AD() { return 'RequestHideBlipAd'; }
 }
