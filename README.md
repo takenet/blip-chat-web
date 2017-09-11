@@ -10,6 +10,8 @@ Installation
 Add the script element inside the **body** of your web page. Put your apikey as asked. To get your apikey go to [BLiP portal][3]. On the left menu access *Publications -> Blip Chat*. You will also need to add domains from the websites where Blip Chat is inclued, in order to enabled them in your chatbot. 
 That's all :)
 
+*For **publishing** purpose, prefer download the script and reference it locally. CDN can have availability problem and cause blip chat instability.*
+
 ```html
 <script src="https://unpkg.com/blip-chat-web@1.0.0" type="text/javascript"></script>
 <script>
