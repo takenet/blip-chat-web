@@ -13,7 +13,7 @@ That's all :)
 *For **publishing** purpose, prefer download the script and reference it locally. CDN can have availability problem and cause blip chat instability.*
 
 ```html
-<script src="https://unpkg.com/blip-chat-web@1.0.0" type="text/javascript"></script>
+<script src="https://unpkg.com/blip-chat-web@1.0.1" type="text/javascript"></script>
 <script>
    (function () {
       window.onload = function () {
@@ -69,7 +69,7 @@ A application that use dojo.js as your AMD
 
 ```html
 <script src="//ajax.googleapis.com/ajax/libs/dojo/1.12.1/dojo/dojo.js"></script>
-<script type="text/javascript" src="https://unpkg.com/blip-chat-web@1.0.0"></script>
+<script type="text/javascript" src="https://unpkg.com/blip-chat-web@1.0.1"></script>
 
 <script>
     require(['BlipWebSDK'], function (sdk) {
