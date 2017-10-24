@@ -93,7 +93,7 @@ export default class Application {
             var userAccount = {
                 userIdentity: this._apiKey + '_' + opts.config.user.id,
                 userPassword: btoa(opts.config.user.password),
-                userName: opts.config.user.name,
+                userName: encodeURIComponent(opts.config.user.name),
                 userEmail: opts.config.user.email,
                 authType: opts.config.authType
             }
