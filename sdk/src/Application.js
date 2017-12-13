@@ -104,6 +104,7 @@ export default class Application {
         this.chatIframe = document.createElement('iframe');
         this.chatIframe.id = 'iframe-chat';
         this.chatIframe.src = this.IFRAMEURL + '?' + params;
+        this.chatIframe.allow = 'geolocation';
 
         var self = this;
 
