@@ -83,7 +83,8 @@ export default class Application {
 
     /* Build chat HTML element */
     buildChat(opts) {
-        let params = 'apikey=' + this._apiKey + '&authType=' + opts.config.authType;
+        // let params = 'apikey=' + this._apiKey + '&authType=' + opts.config.authType;
+        let params = `bot=${this._apiKey}&authType=${opts.config.authType}`;
 
         if (opts.config.authType === AuthType.DEV) {
             if (!opts.config.user || !opts.config.user.id || !opts.config.user.password) {
@@ -130,8 +131,8 @@ export default class Application {
                 this.chatEl.classList.add('mobile-closed');
             } else {
                 this.chatEl.classList.add('fixed-window');
-                this.chatIframe.width = 300;
-                this.chatIframe.height = 460;
+                this.chatIframe.width = 400;
+                this.chatIframe.height = 600;
             }
 
             //Set window config
@@ -263,6 +264,8 @@ export default class Application {
 
 
     _onReceivePostMessage(event) {
+        console.log('sdk web', event);
+
         const origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
         if (this.IFRAMEURL.indexOf(origin) === -1) {
             return;
@@ -312,6 +315,8 @@ export default class Application {
     _startConnection() {
         let iframe = document.getElementById('iframe-chat');
         let account = this.ApplicationStorage._getFromLocalStorage(Constants.USER_ACCOUNT_KEY);
+        console.log('sdk web account', account);
+
         let message =
             {
                 code: Constants.START_CONNECTION_CODE,
