@@ -1,8 +1,8 @@
 export default class Constants {
     static get USER_ACCOUNT_KEY() { return btoa('blipSdkUAccount'); }
     static get IFRAMEURL_LOCAL() { return 'http://localhost:8082/'; }
-    static get IFRAMEURL_HMG() { return 'https://hmg-sdkcommon.blip.ai/'; }
-    static get IFRAMEURL_PRD() { return 'https://sdkcommon.blip.ai/'; }
+    static get IFRAMEURL_HMG() { return 'https://hmg-chat.blip.ai/'; }
+    static get IFRAMEURL_PRD() { return 'https://chat.blip.ai/'; }
     static get SDK_DEFAULT_TITLE() { return 'Estamos online'; }
     static get SDK_DEFAULT_ICON_PATH() { return 'https://takenetomni.blob.core.windows.net/media-db/blip-app-white.png'; }
     static get SDK_DEFAULT_WIDGET_COLOR() { return '#546E7A'; }
