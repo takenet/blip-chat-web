@@ -83,7 +83,6 @@ export default class Application {
 
     /* Build chat HTML element */
     buildChat(opts) {
-        // let params = 'apikey=' + this._apiKey + '&authType=' + opts.config.authType;
         let params = `bot=${this._apiKey}&authType=${opts.config.authType}`;
 
         if (opts.config.authType === AuthType.DEV) {

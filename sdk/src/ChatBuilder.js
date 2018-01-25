@@ -5,12 +5,12 @@ export default class ChatBuilder {
     this._application = new Application();
   }
 
-  withApiKey(apiKey) {
-    this._application._apiKey = apiKey;
+  withBotIdentifier(identifier) {
+    this._application._apiKey = identifier;
     return this;
   }
 
-  build(opts) {    
+  build(opts) {
     this._application.openBlipThread(opts);
   }
 
@@ -22,6 +22,6 @@ export default class ChatBuilder {
   }
 
   sendMessage(message) {
-    this._application._sendMessage(message);    
+    this._application._sendMessage(message);
   }
 }
