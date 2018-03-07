@@ -10,7 +10,6 @@ module.exports = function makeWebpackConfig(opt) {
     var BUILD = !!opt.BUILD;
 
     var commonPlugins = [
-        new webpack.HotModuleReplacementPlugin(),
         new webpack.DefinePlugin({
             'process.env': {
                 'NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
@@ -65,6 +64,7 @@ module.exports = function makeWebpackConfig(opt) {
         ])
             // DEVELOPMENT ==> common + development plugins
             : commonPlugins.concat([
+                new webpack.HotModuleReplacementPlugin(),
                 new webpack.NoErrorsPlugin(),
             ]),
     }
