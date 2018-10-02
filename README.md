@@ -1,3 +1,7 @@
+This project is DEPRECATED
+======
+
+Please use [BLiP Chat Widget](https://github.com/takenet/blip-chat-widget) in order to add BLiP Chat in your web page.
 
 Blip Chat for Web
 ======
